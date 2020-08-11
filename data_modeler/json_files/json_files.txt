@@ -1,1 +1,0 @@
-Contains the .json files used in this project.
