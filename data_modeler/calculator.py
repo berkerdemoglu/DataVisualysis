@@ -1,9 +1,10 @@
-import machinelearning_functions as mlf
+import machine_learning_functions as mlf
 
 class Calculator():
 	"""
 	A class that calculates values such as median,
-	mode etc. Used for data analysis.
+	mode etc. Used for data analysis. Also contains
+	some functions for data_modeler.py.
 	"""
 
 
@@ -14,30 +15,7 @@ class Calculator():
 	def use_recent_dataset(self, dataset):
 		"""Use the most recent dataset."""
 		self.dataset = dataset
-
-	def see_dataset(self):
-		"""
-		Asks the user if they wish to see the whole dataset or not 
-		if the dataset is larger than 30 elements.
-		If user inputs 'y', the whole dataset is printed. If user inputs 'n',
-		"""
-		if len(self.dataset) > 30:
-			prompt = "Would you like to see the whole dataset? It is "
-			prompt += str(len(self.dataset)) + " elements long.\n"
-			prompt += "(Enter 'y' to see the whole dataset, 'n' to see a part of the dataset.)\n"
-			while True:
-				user_choice = input(prompt)
-				if user_choice == 'y':
-					print(self.dataset)
-					break
-				elif user_choice == 'n':
-					print(self.dataset[0:9], "...", self.dataset[-10:])
-					break
-				else: # if invalid input:
-					print("You have entered an invalid value. Please try again.")
-		else:
-			print(self.dataset)
-
+		
 	def create_offline_dataset(self):
 		"""Create a default dataset using the random module."""
 		return mlf.create_dataset()
