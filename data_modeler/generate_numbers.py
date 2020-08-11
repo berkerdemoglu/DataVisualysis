@@ -9,7 +9,7 @@ def get_random_numbers(numbers, mini, maxi, replacement, method):
 		    "jsonrpc": "2.0",
 		    "method": method,
 		    "params": {
-		        "apiKey": "c05fccde-4fb0-48de-8b50-65a0840604fd",
+		        "apiKey": "", # redacted, enter your API Key here
 		        "n": numbers,
 		        "min": mini,
 		        "max": maxi,
