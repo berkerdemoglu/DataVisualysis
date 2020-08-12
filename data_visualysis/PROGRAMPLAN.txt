@@ -35,6 +35,8 @@ Plan for August 13, 2020:
 - Add ability to get more than 10000 numbers from random.org
 - Learn how github command line works and delete commit history (https://docs.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository).
 - Add more statistical functions for calculator.py.
+- Use the new API key and make sure the old one is deactivated
+
 
 Plan for August 14, 2020:
 - Study data visualization from PCCB.
