@@ -16,7 +16,7 @@ Plan for August 12, 2020:
 - Add more statistical functions for calculator.py.
 - Use the unittest module for testing DataModeler.
 - Find a good name for the project (DataModeler or DataVisualysis?).
-- Write functions for writing to files (dataset_functions.py).
+- Write functions for writing to files (dataset_functions.py). ✓
 - Organize the functions and basically the whole project.
 
 
@@ -27,6 +27,7 @@ Plan for August 13, 2020:
 - Study data visualization from PCCB.
 - data_app.py -> data_program.py
 - Add ability to get more than 10000 numbers from random.org
+- Learn how github command line works and delete commit history (https://docs.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository).
 
 Plan for August 14, 2020:
 - Study data visualization from PCCB.
