@@ -1,7 +1,11 @@
+DO NOT FORGET TO:
+- Change the API key to 'redacted' when uploading files.
+
+
 Long Term Plan for the Project:
 - All functions for analyzing data.
 - The ability to visualize data using matplotlib with a little touches from me.
-- Deploy the module using pip (Learn how that works).
+- Deploy the module using pip.
 
 
 Plan for August 12, 2020:
@@ -11,26 +15,32 @@ Plan for August 12, 2020:
 - Use the unittest module for testing DataModeler.
 - Find a good name for the project (DataModeler or DataVisualysis?).
 - Write functions for writing to files (dataset_functions.py).
-- Add a function for printing how many files are in json_files.
-- Learn how project development levels are named.
-- Organize the functions and basically the whole project. Find ways to make the code faster.
+- Organize the functions and basically the whole project.
+
 
 Plan for August 13, 2020:
-
+- Add an option to change the default directory used when a data set or a file path is not provided.
+- Learn how uploading packages to pip works.
 
 Plan for August 14, 2020:
+- Study data visualization from PCCB.
 
 
 Plan for August 15, 2020:
+- Study data visualization from PCCB.
 
 
 Plan for August 16, 2020:
+- Study data visualization from PCCB.
 
 
 Plan for August 17, 2020:
+- Study data visualization from PCCB.
 
 
 Plan for August 18, 2020:
+- Study data visualization from PCCB.
 
 
 Plan for August 19, 2020:
+- Study data visualization from PCCB.
