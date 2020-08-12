@@ -23,6 +23,9 @@ Plan for August 12, 2020:
 Plan for August 13, 2020:
 - Add an option to change the default directory used when a data set or a file path is not provided.
 - Learn how uploading packages to pip works.
+- data_modeler.py -> data_visualysis.py
+- Study data visualization from PCCB.
+- data_app.py -> data_program.py
 
 Plan for August 14, 2020:
 - Study data visualization from PCCB.
