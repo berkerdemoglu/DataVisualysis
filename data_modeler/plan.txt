@@ -26,6 +26,7 @@ Plan for August 13, 2020:
 - data_modeler.py -> data_visualysis.py
 - Study data visualization from PCCB.
 - data_app.py -> data_program.py
+- Add ability to get more than 10000 numbers from random.org
 
 Plan for August 14, 2020:
 - Study data visualization from PCCB.
