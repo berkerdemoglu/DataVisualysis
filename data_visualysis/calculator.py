@@ -1,4 +1,4 @@
-import machine_learning_functions as mlf
+import calculator_functions as cf
 
 class Calculator():
 	"""
@@ -16,29 +16,25 @@ class Calculator():
 		"""Use the most recent dataset."""
 		self.dataset = dataset
 		
-	def create_offline_dataset(self):
-		"""Create a default dataset using the random module."""
-		return mlf.create_dataset()
-
 	def mean(self):
 		"""Return the mean of the dataset."""
-		return mlf.find_mean(self.dataset)
+		return cf.find_mean(self.dataset)
 
 	def median(self):
 		"""Return the median of the dataset."""
-		return mlf.find_median(self.dataset)
+		return cf.find_median(self.dataset)
 
 	def mode(self, mode_occurrence="no"):
 		"""Return the mode of the dataset."""
-		return mlf.find_mode(self.dataset, mode_occurrence)
+		return cf.find_mode(self.dataset, mode_occurrence)
 
 	def std(self):
 		"""Return the standard deviation of the dataset."""
-		return mlf.find_standard_deviation(self.dataset)
+		return cf.find_standard_deviation(self.dataset)
 
 	def var(self):
 		"""Return the variance of the dataset."""
-		return mlf.find_variance(self.dataset)
+		return cf.find_variance(self.dataset)
 
 	def percentile(self, percentile):
-		return mlf.find_percentile(self.dataset, percentile)
+		return cf.find_percentile(self.dataset, percentile)

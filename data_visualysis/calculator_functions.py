@@ -1,5 +1,3 @@
-import random
-
 def sqrt(n):
     """Returns the square root value of a number."""
     n = float(n)
@@ -13,13 +11,10 @@ def sq(n):
 	n = n ** 2
 	return n
 
-def create_dataset():
-	dataset = [random.uniform(0,100) for i in range(1, 101)]
-	return dataset
 
 def find_mean(number_list):
-	"""Finds the mean of a list of numbers."""
-	# Round up two decimal places.
+	"""Finds the mean of a list of numbers. 
+	Rounds up two decimal places."""
 	return float(format(sum(number_list) / len(number_list), '.2f'))
 
 
@@ -46,7 +41,7 @@ def find_mode(number_list, occurrence="no"):
 	"""Finds the mode of a list of numbers."""
 	# Sort the list, store the length of the list in a variable, 
 	# create a dictionary named counts and create a copy of number_list.
-	original_list = [n for n in number_list]
+	original_list = number_list[:]
 	sorted_number_list = sorted(number_list)
 	list_length = len(sorted_number_list)
 	counts = {}

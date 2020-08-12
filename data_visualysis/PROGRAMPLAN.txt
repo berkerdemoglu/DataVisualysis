@@ -6,6 +6,8 @@ Long Term Plan for the Project:
 - All functions for analyzing data.
 - The ability to visualize data using matplotlib with a little touches from me.
 - Deploy the module using pip.
+- Add ability to take info from SQL.
+- See if you can turn it into a website.
 
 
 Plan for August 12, 2020:
@@ -21,6 +23,10 @@ Plan for August 12, 2020:
 Plan for August 13, 2020:
 - Add an option to change the default directory used when a data set or a file path is not provided.
 - Learn how uploading packages to pip works.
+- data_modeler.py -> data_visualysis.py
+- Study data visualization from PCCB.
+- data_app.py -> data_program.py
+- Add ability to get more than 10000 numbers from random.org
 
 Plan for August 14, 2020:
 - Study data visualization from PCCB.
