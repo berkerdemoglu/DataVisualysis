@@ -2,9 +2,9 @@
 
 A Python project for analyzing and visualizing data.
 
-The file you want to run is 'data_app.py'. A DataModeler object is generated in 'data_app.py' and one can run some methods for analysis.
+The file you want to run is 'data_program.py'. A DataVisualysis object is generated in 'data_program.py' and one can run some methods for analysis.
 
-The data visualization part is still lacking, but I will implement it using matplotlib.
+The data visualization part is still lacking, but Iwill be implemented using matplotlib.
 
 # Required Python Modules:
 - matplotlib
@@ -12,7 +12,7 @@ The data visualization part is still lacking, but I will implement it using matp
 - json (built-in module)
 - random (built-in module)
 
-# How to Use the random.org Dataset Generator
+# How to Use the random.org Random Number Generator
 1. Signup and login to random.org
 2. Go to https://api.random.org/dashboard
 3. Click on 'Create a New API Key'
