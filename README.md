@@ -1,4 +1,4 @@
-# © DataVisualysis 0.1.1
+# © DataVisualysis 0.1.2
 
 A Python project for analyzing and visualizing data.
 
