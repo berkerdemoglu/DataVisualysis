@@ -6,6 +6,8 @@ Long Term Plan for the Project:
 - All functions for analyzing data.
 - The ability to visualize data using matplotlib with a little touches from me.
 - Deploy the module using pip.
+- Add ability to take info from SQL.
+- See if you can turn it into a website.
 
 
 Plan for August 12, 2020:
