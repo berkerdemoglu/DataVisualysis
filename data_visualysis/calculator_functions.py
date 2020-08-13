@@ -95,6 +95,6 @@ def find_variance(number_list):
 
 def find_percentile(number_list, percentile):
 	sorted_number_list = sorted(number_list)
-	list_length = len(number_list)
-	index = int(round((percentile * list_length/100) + 0.5))
-	return number_list[index - 1]
+	n = len(sorted_number_list)
+	rank = (percentile/100) * (n + 1)
+	return sorted_number_list[int(rank - 1)]

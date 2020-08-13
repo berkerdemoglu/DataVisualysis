@@ -1,6 +1,6 @@
 import calculator_functions as cf
 
-class Calculator():
+class Calculator:
 	"""
 	A class that calculates values such as median,
 	mode etc. Used for data analysis. Also contains
