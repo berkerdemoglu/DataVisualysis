@@ -4,15 +4,16 @@ DO NOT FORGET TO:
 INCOMPLETE TASKS:
 - Use the unittest module for testing DataModeler.
 - Write functions for writing to files (dataset_functions.py).
+- Add ability to take info from SQL.
 
 NOT STARTED:
 - Learn how uploading packages to pip works.
+- Learn how github command line works.
 
 Long Term Plan for the Project:
 - All functions for analyzing data.
 - The ability to visualize data using matplotlib with a little touches from me.
 - Deploy the module using pip.
-- Add ability to take info from SQL.
 - See if you can turn it into a website.
 
 
@@ -32,7 +33,7 @@ Plan for August 13, 2020:
 - Study data visualization from PCCB.
 - data_app.py -> data_program.py ✓
 - Add ability to get more than 10000 numbers from random.org
-- Learn how github command line works.
+- Learn how github command line works. X
 - Add more statistical functions for calculator.py. ✓
 - Use the new API key and make sure the old one is deactivated. ✓
 
