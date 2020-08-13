@@ -1,15 +1,14 @@
 from calculator import Calculator
 import data_modeler_functions as dmf
-import json
 
 """If this file is being imported, print a message to the console, 
 specifying the version of DataVisualysis."""
 if __name__ != '__main__':
-	print("© DataVisualysis 0.1.1\n")
+	print("© DataVisualysis 0.1.2\n")
 
-class DataVisualysis():
+class DataVisualysis:
 	"""A class for data visualization and analysis.
-	The main class of the program - DataVisualysis."""
+	The main class of DataVisualysis."""
 
 	def __init__(self, filepath=None, dataset=None):
 		"""
@@ -21,11 +20,11 @@ class DataVisualysis():
 		@param filepath: The path of the file containing the data set
 		@param dataset: The dataset itself
 		"""
-		self.dataset = dmf.init_dataset(filepath, dataset)
+		self.dataset = dmf.init_datavisualysis(filepath, dataset)
 		self.calculate = Calculator(self.dataset)
 
 	# Regular Methods
-	def generate_random_dataset(self, numbers=100, mini=0, 
+	def generate_random_dataset(self, api_key, numbers=100, mini=0, 
 		maxi=100, replacement="true"):
 		"""
 		Create a random number dataset of integers using random.org and 
@@ -40,7 +39,7 @@ class DataVisualysis():
 
 		# Call get_random_numbers to get random numbers (grn stands for get_random_numbers).
 		# Set self.dataset to the generated numbers in list format.
-		self.dataset = dmf.grn(numbers, mini, maxi, replacement)
+		self.dataset = dmf.generate_random_numbers(numbers, mini, maxi, replacement, api_key)
 		self.calculate.dataset = self.dataset
 
 	def generate_offline_random_dataset(self, mini=0, 
@@ -111,3 +110,13 @@ class DataVisualysis():
 		@param count: The file count to be stored in json_files/file_count.json
 		"""
 		dmf.reset_count(count)
+
+	@staticmethod
+	def change_default_directory(path='json_files/numbers_data.json'):
+		"""
+		Changes the default directory of the class.
+
+		@param path: The path of the file to be used as the default directory.
+		Default option for the path is json_files/numbers_data.json.
+		"""
+		dmf.chdef_dir(path)

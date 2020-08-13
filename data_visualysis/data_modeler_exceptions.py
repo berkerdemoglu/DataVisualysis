@@ -22,3 +22,10 @@ class RandomOrgError(Exception):
 	def __init__(self, message="Invalid input for generate_random_dataset()"):
 		self.message = message
 		super().__init__(self.message)
+
+class InvalidPathError(Exception):
+	"""Exception raised when count (reset_count()) is not an integer."""
+
+	def __init__(self, message="The path stored in json_files/default_directory.json is not a string."):
+		self.message = message
+		super().__init__(self.message)
