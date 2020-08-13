@@ -1,5 +1,6 @@
 DO NOT FORGET TO:
 - Change the API key to 'redacted' when uploading files.
+- Change development process (e.g 0.1.2 -> 0.1.3)
 
 INCOMPLETE TASKS:
 - Write a proper file for testing DataVisualysis using the unittest module.
