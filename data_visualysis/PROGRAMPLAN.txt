@@ -6,7 +6,7 @@ INCOMPLETE TASKS:
 - Write functions for writing to files (dataset_functions.py).
 
 NOT STARTED:
-- Add more statistical functions for calculator.py.
+- Learn how uploading packages to pip works.
 
 Long Term Plan for the Project:
 - All functions for analyzing data.
@@ -27,19 +27,20 @@ Plan for August 12, 2020:
 
 
 Plan for August 13, 2020:
-- Add an option to change the default directory used when a data set or a file path is not provided.
-- Learn how uploading packages to pip works.
-- data_modeler.py -> data_visualysis.py
+- Add an option to change the default directory (used when a data set or a file path is not provided). ✓
+- data_modeler.py -> data_visualysis.py ✓
 - Study data visualization from PCCB.
-- data_app.py -> data_program.py
+- data_app.py -> data_program.py ✓
 - Add ability to get more than 10000 numbers from random.org
-- Learn how github command line works and delete commit history (https://docs.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository).
-- Add more statistical functions for calculator.py.
-- Use the new API key and make sure the old one is deactivated
+- Learn how github command line works.
+- Add more statistical functions for calculator.py. ✓
+- Use the new API key and make sure the old one is deactivated. ✓
 
 
 Plan for August 14, 2020:
 - Study data visualization from PCCB.
+- Add ability to generate a dataset with a specified standard deviation, median etc.
+- Learn how uploading packages to pip works.
 
 
 Plan for August 15, 2020:
