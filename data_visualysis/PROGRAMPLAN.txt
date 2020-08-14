@@ -39,6 +39,10 @@ Plan for August 13, 2020:
 
 
 Plan for August 14, 2020:
+- FREE DAY
+
+
+Plan for August 15, 2020:
 - Study data visualization from PCCB.
 - Add ability to generate a dataset with a specified standard deviation, median etc.
 - Learn how uploading packages to pip works.
@@ -49,10 +53,6 @@ Plan for August 14, 2020:
 - Revise the default directory thing (You can accidentally overwrite a default directory file).
 - Revise Security.MD.
 - PROGRAMPLAN.txt -> PROGRAMPLAN.md
-
-
-Plan for August 15, 2020:
-- Study data visualization from PCCB.
 
 
 Plan for August 16, 2020:
