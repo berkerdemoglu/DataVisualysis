@@ -39,12 +39,14 @@ Plan for August 13, 2020:
 
 
 Plan for August 14, 2020:
-- FREE DAY
+- OFF DAY
+- Learned some C++
 
 
 Plan for August 15, 2020:
 - Study data visualization from PCCB.
 - Add ability to generate a dataset with a specified standard deviation, median etc.
+- Add ability to return dataset or store dataset (generate dataset)
 - Learn how uploading packages to pip works.
 - Implemented requesting more than 10000 numbers from random.org, but requires API key requires more bits (Tell user that their API key has ran out of bits using an exception).
 - Implement some functions from Excel.
