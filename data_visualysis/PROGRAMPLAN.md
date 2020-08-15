@@ -1,0 +1,73 @@
+## :heavy_exclamation_mark: *DO NOT FORGET TO*:
+>- Change the API key to 'redacted' when uploading files.
+>- Change development process (e.g 0.1.2 -> 0.1.3)
+
+## INCOMPLETE TASKS:
+>- Write a proper file for testing DataVisualysis using the unittest module.
+>- Add ability to take info from SQL.
+
+## NOT STARTED:
+>- Learn how uploading packages to pip works.
+>- Learn how github command line works.
+
+### Long Term Plan for the Project:
+>- All functions for analyzing data.
+>- The ability to visualize data using matplotlib with a little touches from me.
+>- Deploy the module using pip.
+>- Create a website for the project.
+
+
+### Plan for August 12, 2020:
+>- Create a module for dataset functions (dataset_functions.py). ✓
+>- Study data visualization from PCCB. X
+>- Add more statistical functions for calculator.py. X
+>- Use the unittest module for testing DataModeler. INCOMPLETE
+>- Find a good name for the project (DataModeler or DataVisualysis?). ✓
+>- Write functions for writing to files (dataset_functions.py). INCOMPLETE
+>- Organize the functions and basically the whole project. ✓
+
+
+### Plan for August 13, 2020:
+>- Add an option to change the default directory (used when a data set or a file path is not provided). ✓
+>- data_modeler.py -> data_visualysis.py ✓
+>- Study data visualization from PCCB. ✓
+>- data_app.py -> data_program.py ✓
+>- Add ability to get more than 10000 numbers from random.org ✓
+>- Learn how github command line works. X
+>- Add more statistical functions for calculator.py. ✓
+>- Use the new API key and make sure the old one is deactivated. ✓
+
+
+### Plan for August 14, 2020:
+>- OFF DAY
+>- Learned some C++
+
+
+### Plan for August 15, 2020:
+>- Study data visualization from PCCB.
+>- Add ability to generate a dataset with a specified standard deviation, median etc.
+>- Add ability to return dataset or store dataset (generate dataset)
+>- Learn how uploading packages to pip works.
+>- Implemented requesting more than 10000 numbers from random.org, but requires API key requires more bits (Tell user that their API key has ran out of bits using an exception).
+>- Implement some functions from Excel.
+>- Study some MySQL from that 5 hour-long video.
+>- Add ability to take info from SQL.
+>- Revise the default directory thing (You can accidentally overwrite a default directory file).
+>- Revise Security.MD.
+>- PROGRAMPLAN.txt -> PROGRAMPLAN.md
+
+
+### Plan for August 16, 2020:
+>- Study data visualization from PCCB.
+
+
+### Plan for August 17, 2020:
+>- Study data visualization from PCCB.
+
+
+### Plan for August 18, 2020:
+>- Study data visualization from PCCB.
+
+
+### Plan for August 19, 2020:
+>- Study data visualization from PCCB.
