@@ -45,20 +45,20 @@
 
 ### Plan for August 15, 2020:
 >- Study data visualization from PCCB.
->- Add ability to generate a dataset with a specified standard deviation, median etc.
->- Add ability to return dataset or store dataset (generate dataset)
->- Learn how uploading packages to pip works.
->- Implemented requesting more than 10000 numbers from random.org, but requires API key requires more bits (Tell user that their API key has ran out of bits using an exception).
->- Implement some functions from Excel.
->- Study some MySQL from that 5 hour-long video.
->- Add ability to take info from SQL.
->- Revise the default directory thing (You can accidentally overwrite a default directory file).
->- Revise Security.MD.
->- PROGRAMPLAN.txt -> PROGRAMPLAN.md
+>- Implemented requesting more than 10000 numbers from random.org, 
+>but API key requires more bits. DISCONTINUED
+>- Revise Security.MD. ✓
+>- PROGRAMPLAN.txt -> PROGRAMPLAN.md ✓
 
 
 ### Plan for August 16, 2020:
 >- Study data visualization from PCCB.
+>- Add ability to generate a dataset with a specified standard deviation, median etc.
+>- Add ability to return dataset or store dataset (generate dataset)
+>- Implement some functions from Excel.
+>- Study some MySQL from that 5 hour-long video.
+>- Add ability to take info from SQL.
+>- Revise the default directory thing (You can accidentally overwrite a stored file).
 
 
 ### Plan for August 17, 2020:
