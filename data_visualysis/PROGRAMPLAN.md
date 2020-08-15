@@ -44,8 +44,8 @@
 
 
 ### Plan for August 15, 2020:
->- Study data visualization from PCCB.
->- Implemented requesting more than 10000 numbers from random.org, 
+>- Learned some C++ ✓
+>- Implemented requesting more than 10000 numbers from random.org,
 >but API key requires more bits. DISCONTINUED
 >- Revise Security.MD. ✓
 >- PROGRAMPLAN.txt -> PROGRAMPLAN.md ✓
