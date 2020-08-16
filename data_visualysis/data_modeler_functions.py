@@ -4,13 +4,23 @@ import random
 from math import floor, fmod
 from data_modeler_exceptions import *
 
+def read_api_key(path):
+	"""Loads the API key from a given file path. 
+	The default option is the file, json_files/api_key.json. """	# Load the API key from the provided file.
+	with open(path, 'r') as f_obj:
+		api_key = json.load(f_obj)
+	return api_key
+
+
 def chdef_dir(path):
 	"""Used in change_default_directory()"""
+	# Dump the provided path to a file.
 	with open('json_files/default_directory.json', 'w') as f_obj:
 		json.dump(path, f_obj)
 
 	if path == 'json_files/numbers_data.json':
-		print("You have not provided a path for the default directory. The presumed directory,", path, "will be used.")
+		msg = "You have not provided a path for the default directory."
+		print(msg + " The presumed directory,", path, "will be used.")
 	else:
 		print("Default directory changed to", path + ".")
 
@@ -26,23 +36,24 @@ def loaddef_dir():
 	return stored_path
 
 
-def init_datavisualysis(filepath, dataset):
-	"""Used in __init__"""
-	if not dataset and not filepath: # if neither dataset nor filepath was not provided:
+def init_datavisualysis(path, dataset):
+	"""Used in __init__()"""
+
+	if not dataset and not path: # if neither dataset nor path was not provided:
 		filename = loaddef_dir()
 		with open(filename, 'r') as file:
 			dataset = json.load(file)
 		msg = "You have provided neither a data set or a file path. \nThe dataset in the "
 		msg += "default directory, {}, will be used.".format(filename)
 		print(msg, "(You can change the dataset later).\n")
-	elif not dataset and filepath: # if only filepath was provided:
-		with open(filepath, 'r') as file:
+	elif not dataset and path: # if only path was provided:
+		with open(path, 'r') as file:
 			dataset = json.load(file)
 		print("The dataset you provided in the file will be used.\n")
-	elif dataset and not filepath: # if only dataset was provided:
+	elif dataset and not path: # if only dataset was provided:
 		print("The dataset you provided will be used.\n")
-	else: # if dataset and filepath were provided:
-		with open(filepath, 'r') as file:
+	else: # if dataset and path were provided:
+		with open(path, 'r') as file:
 			dataset = json.load(file)
 		print("You have provided both the data set and the file path.", 
 			"The data set in the file will be used.\n")
@@ -140,14 +151,6 @@ def generate_random_numbers(numbers, mini, maxi, replacement, api_key, method='s
 	return dataset
 
 
-def raise_method_error():
-	"""Raises a MethodError exception when called."""
-	raise MethodError
-
-def raise_mode_include_error():
-	"""Raises a ModeIncludeError exception when called."""
-	raise ModeIncludeError
-
 def reset_count(count):
 	"""Used in set_file_count()"""
 	if not isinstance(count, int):
@@ -227,3 +230,13 @@ def print_some_results(dataset, mode_var):
 		print("Mode:", str(mode_var[0]) + ", Occurrences:", mode_var[1])
 	else:
 		print("Mode:", mode_var)
+
+
+def raise_method_error():
+	"""Raises a MethodError exception when called."""
+	raise MethodError
+
+
+def raise_mode_include_error():
+	"""Raises a ModeIncludeError exception when called."""
+	raise ModeIncludeError

@@ -10,17 +10,17 @@ class DataVisualysis:
 	"""A class for data visualization and analysis.
 	The main class of DataVisualysis."""
 
-	def __init__(self, filepath=None, dataset=None):
+	def __init__(self, path=None, dataset=None):
 		"""
 		Initialize the data modeler object. A data set or a file path 
 		(.json file) containing a data set can be specified. 
 		If both the data set and the file path were provided, the file path
 		will be used for dataset.
 
-		@param filepath: The path of the file containing the data set
+		@param path: The path of the file containing the data set
 		@param dataset: The dataset itself
 		"""
-		self.dataset = dmf.init_datavisualysis(filepath, dataset)
+		self.dataset = dmf.init_datavisualysis(path, dataset)
 		self.calculate = Calculator(self.dataset)
 
 	# Regular Methods
@@ -150,6 +150,11 @@ class DataVisualysis:
 		dmf.chdef_dir(path)
 
 	@staticmethod
+	def load_api_key(path="json_files/api_key.json"):
+		"""Returns the stored API key."""
+		return dmf.read_api_key(path)
+
+	@staticmethod
 	def compare_datasets(dataset1, dataset2):
 		"""
 		Compares two given datasets.
@@ -157,3 +162,5 @@ class DataVisualysis:
 		@param dataset1: The first dataset
 		@param dataset2: The second dataset
 		"""
+		# NOT IMPLEMENTED YET!
+		pass
