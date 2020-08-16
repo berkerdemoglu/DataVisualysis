@@ -37,8 +37,8 @@ def find_median(number_list):
 	return median
 
 
-def find_mode(number_list, occurrence="no"):
-	"""Finds the mode of a list of numbers."""
+def find_occurrences(number_list):
+	"""Finds how many times every number in a list occurs."""
 	# Sort the list, store the length of the list in a variable, 
 	# create a dictionary named counts and create a copy of number_list.
 	original_list = number_list[:]
@@ -53,7 +53,11 @@ def find_mode(number_list, occurrence="no"):
 			original_list.remove(sorted_number_list[i])
 			count += 1
 			counts[sorted_number_list[i]] = count
+	return counts
 
+def find_mode(number_list, occurrence="no"):
+	"""Finds the mode of a list of numbers."""
+	counts = find_occurrences(number_list)
 	# Create a list containing the occurrences of each number.
 	occurrences = [n for n in counts.values()]
 	# Create a list containing each unique number.

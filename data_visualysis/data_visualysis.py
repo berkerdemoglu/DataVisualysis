@@ -4,7 +4,7 @@ import data_modeler_functions as dmf
 """If this file is being imported, print a message to the console, 
 specifying the version of DataVisualysis."""
 if __name__ != '__main__':
-	print("© DataVisualysis 0.1.2\n")
+	print("© DataVisualysis 0.1.3\n")
 
 class DataVisualysis:
 	"""A class for data visualization and analysis.
@@ -25,7 +25,7 @@ class DataVisualysis:
 
 	# Regular Methods
 	def generate_random_dataset(self, api_key, numbers=100, mini=0, 
-		maxi=100, replacement="true"):
+		maxi=100, replacement="true", method="store"):
 		"""
 		Create a random number dataset of integers using random.org and 
 		set self.dataset to the newly created dataset and save the dataset
@@ -39,11 +39,16 @@ class DataVisualysis:
 
 		# Call get_random_numbers to get random numbers (grn stands for get_random_numbers).
 		# Set self.dataset to the generated numbers in list format.
-		self.dataset = dmf.generate_random_numbers(numbers, mini, maxi, replacement, api_key)
-		self.calculate.dataset = self.dataset
+		if method == 'return':
+			return dmf.generate_random_numbers(numbers, mini, maxi, replacement, api_key, method)
+		elif method == 'store':
+			self.dataset = dmf.generate_random_numbers(numbers, mini, maxi, replacement, api_key)
+			self.calculate.dataset = self.dataset
+		else:
+			dmf.raise_method_error()
 
 	def generate_offline_random_dataset(self, mini=0, 
-		maxi=100, numbers=100, ntype="int"):
+		maxi=100, numbers=100, ntype="int", method="store"):
 		"""
 		DEFAULT-Sets self.dataset to a 100-element list, 
 		generated using the random module. The list contains floating 
@@ -54,8 +59,13 @@ class DataVisualysis:
 		@param numbers: How many numbers to generate
 		@param ntype: The type of numbers you want to generate - "int" or "float"
 		"""
-		self.dataset = dmf.create_dataset_random_module(mini, maxi, numbers, ntype)
-		self.calculate.dataset = self.dataset
+		if method == 'return':
+			return dmf.create_dataset_random_module(mini, maxi, numbers, ntype, method)
+		elif method == 'store':
+			self.dataset = dmf.create_dataset_random_module(mini, maxi, numbers, ntype)
+			self.calculate.dataset = self.dataset
+		else:
+			dmf.raise_method_error()
 
 	def use_specific_dataset(self, path='json_files/numbers_data.json'):
 		"""
@@ -71,9 +81,10 @@ class DataVisualysis:
 	def save_current_dataset(self, path=None):
 		"""
 		If a path is not provided, saves the current dataset to another file. 
-		The file will be named dataset_(file_count).json, located in the json_files folder. 
-		'file_count.json' will be incremented every time a dataset is saved in the default directory.
-		If a path is provided, the file will be saved in the provided path with the provided name.
+		The file will be named dataset_(file_count).json, located in the json_files
+		folder. 'file_count.json' will be incremented every time a dataset is saved in the 
+		default directory. If a path is provided, the file will be saved in the provided 
+		path with the provided name.
 
 		@param path: The path of the file to be saved
 		"""
@@ -97,9 +108,26 @@ class DataVisualysis:
 		mode_var = self.calculate.mode(mode_occurrence)
 		dmf.print_some_results(self.dataset, mode_var)
 		print("Mean:", self.calculate.mean())
-		print("Median:", self.calculate.median())
+		print("1st Quartile:", self.calculate.percentile(25))
+		print("Median (2nd Quartile):", self.calculate.median())
+		print("3rd Quartile:", self.calculate.percentile(75))
 		print("Standard Deviation:", self.calculate.std())
 		print("Variance:", self.calculate.var())
+
+	def return_occurrences(self, mode_include='exclude'):
+		"""
+		Prints how many times each value appears in the list.
+
+		@param mode_include: Takes 'include' or 'exclude' values.
+		"""
+		if mode_include == 'include':
+			mode_var = self.calculate.mode('yes')
+			print("Mode:", str(mode_var[0]) + ", Occurrences:", mode_var[1])
+		elif mode_include == 'exclude':
+			pass
+		else:
+			dmf.raise_mode_include_error()
+		return self.calculate.occurrences()
 
 	# Static and Class Methods
 	@staticmethod
@@ -120,3 +148,12 @@ class DataVisualysis:
 		Default option for the path is json_files/numbers_data.json.
 		"""
 		dmf.chdef_dir(path)
+
+	@staticmethod
+	def compare_datasets(dataset1, dataset2):
+		"""
+		Compares two given datasets.
+
+		@param dataset1: The first dataset
+		@param dataset2: The second dataset
+		"""

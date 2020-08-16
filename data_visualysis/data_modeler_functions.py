@@ -49,11 +49,11 @@ def init_datavisualysis(filepath, dataset):
 	return dataset
 
 
-def create_dataset_random_module(mini, maxi, numbers, ntype):
+def create_dataset_random_module(mini, maxi, numbers, ntype, method='store'):
 	"""Used in create_offline_random_dataset"""
 	if ntype == 'float':
 		dataset = [random.uniform(mini,maxi) for i in range(1,numbers+1)]
-		msg = "You have generated a new dataset of floating point numbers using the random module."
+		msg = "You have generated a new dataset of decimal numbers using the random module."
 	elif ntype == 'int':
 		dataset = [random.randint(mini,maxi) for i in range(1,numbers+1)]
 		msg = "You have generated a new dataset of integers using the random module."
@@ -63,7 +63,9 @@ def create_dataset_random_module(mini, maxi, numbers, ntype):
 	default_dir = loaddef_dir()
 	with open(default_dir, 'w') as file:
 		json.dump(dataset, file)
-	print(msg, "The dataset will be stored in the default directory.")
+
+	if method == 'store':
+		print(msg, "The dataset will be stored in the default directory.")
 	return dataset
 
 
@@ -89,6 +91,13 @@ def datasetfromrandom_org(numbers, mini, maxi, replacement, api_key):
 	if 'error' in response.text:
 		with open('json_files/request_random.json', 'w') as f_obj:
 			json.dump(response.text, f_obj)
+
+		if 'The operation requires' in response.text:
+			raise NotEnoughBitsError
+
+		elif "Parameter 'apiKey' is malformed" in response.text:
+			raise InvalidAPIKeyError
+
 		raise RandomOrgError
 	# Store the request in a .json file.
 	with open('json_files/request_random.json', 'w') as f_obj:
@@ -103,7 +112,7 @@ def datasetfromrandom_org(numbers, mini, maxi, replacement, api_key):
 	return dataset
 
 
-def generate_random_numbers(numbers, mini, maxi, replacement, api_key):
+def generate_random_numbers(numbers, mini, maxi, replacement, api_key, method='store'):
 	"""Get a new random number list using random.org and save it in 
 	the default directory."""
 	# If numbers are greater than 10000, random.org will generate an error.
@@ -120,16 +129,24 @@ def generate_random_numbers(numbers, mini, maxi, replacement, api_key):
 	else:
 		dataset = datasetfromrandom_org(numbers, mini, maxi, replacement, api_key)
 
-	# Store the dataset in the default directory.
-	default_dir = loaddef_dir()
-	with open(default_dir, 'w') as file:
-		json.dump(dataset, file)
-
 	# Print a message to inform the user that a new dataset was generated and return the dataset.
 	msg = "You have generated a new dataset using random.org."
-	print(msg, "It will be stored in the default directory.")
+	if method == 'store':
+		# Store the dataset in the default directory.
+		default_dir = loaddef_dir()
+		with open(default_dir, 'w') as file:
+			json.dump(dataset, file)
+		print(msg, "It will be stored in the default directory.")
 	return dataset
 
+
+def raise_method_error():
+	"""Raises a MethodError exception when called."""
+	raise MethodError
+
+def raise_mode_include_error():
+	"""Raises a ModeIncludeError exception when called."""
+	raise ModeIncludeError
 
 def reset_count(count):
 	"""Used in set_file_count()"""
@@ -195,6 +212,7 @@ def print_dataset(dataset):
 def print_some_results(dataset, mode_var):
 	"""Used in show_results()"""
 	# If the dataset has more than 50 elements, do not print the dataset.
+	print("The dataset has", len(dataset), "elements. ", end="")
 	if len(dataset) < 50:
 		print("Dataset:", dataset)
 	else:
