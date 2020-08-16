@@ -4,13 +4,23 @@ import random
 from math import floor, fmod
 from data_modeler_exceptions import *
 
+def read_api_key(path):
+	"""Loads the API key from a given file path. 
+	The default option is the file, json_files/api_key.json. """	# Load the API key from the provided file.
+	with open(path, 'r') as f_obj:
+		api_key = json.load(f_obj)
+	return api_key
+
+
 def chdef_dir(path):
 	"""Used in change_default_directory()"""
+	# Dump the provided path to a file.
 	with open('json_files/default_directory.json', 'w') as f_obj:
 		json.dump(path, f_obj)
 
 	if path == 'json_files/numbers_data.json':
-		print("You have not provided a path for the default directory. The presumed directory,", path, "will be used.")
+		msg = "You have not provided a path for the default directory."
+		print(msg + " The presumed directory,", path, "will be used.")
 	else:
 		print("Default directory changed to", path + ".")
 
@@ -26,34 +36,35 @@ def loaddef_dir():
 	return stored_path
 
 
-def init_datavisualysis(filepath, dataset):
-	"""Used in __init__"""
-	if not dataset and not filepath: # if neither dataset nor filepath was not provided:
+def init_datavisualysis(path, dataset):
+	"""Used in __init__()"""
+
+	if not dataset and not path: # if neither dataset nor path was not provided:
 		filename = loaddef_dir()
 		with open(filename, 'r') as file:
 			dataset = json.load(file)
 		msg = "You have provided neither a data set or a file path. \nThe dataset in the "
 		msg += "default directory, {}, will be used.".format(filename)
 		print(msg, "(You can change the dataset later).\n")
-	elif not dataset and filepath: # if only filepath was provided:
-		with open(filepath, 'r') as file:
+	elif not dataset and path: # if only path was provided:
+		with open(path, 'r') as file:
 			dataset = json.load(file)
 		print("The dataset you provided in the file will be used.\n")
-	elif dataset and not filepath: # if only dataset was provided:
+	elif dataset and not path: # if only dataset was provided:
 		print("The dataset you provided will be used.\n")
-	else: # if dataset and filepath were provided:
-		with open(filepath, 'r') as file:
+	else: # if dataset and path were provided:
+		with open(path, 'r') as file:
 			dataset = json.load(file)
 		print("You have provided both the data set and the file path.", 
 			"The data set in the file will be used.\n")
 	return dataset
 
 
-def create_dataset_random_module(mini, maxi, numbers, ntype):
+def create_dataset_random_module(mini, maxi, numbers, ntype, method='store'):
 	"""Used in create_offline_random_dataset"""
 	if ntype == 'float':
 		dataset = [random.uniform(mini,maxi) for i in range(1,numbers+1)]
-		msg = "You have generated a new dataset of floating point numbers using the random module."
+		msg = "You have generated a new dataset of decimal numbers using the random module."
 	elif ntype == 'int':
 		dataset = [random.randint(mini,maxi) for i in range(1,numbers+1)]
 		msg = "You have generated a new dataset of integers using the random module."
@@ -63,7 +74,9 @@ def create_dataset_random_module(mini, maxi, numbers, ntype):
 	default_dir = loaddef_dir()
 	with open(default_dir, 'w') as file:
 		json.dump(dataset, file)
-	print(msg, "The dataset will be stored in the default directory.")
+
+	if method == 'store':
+		print(msg, "The dataset will be stored in the default directory.")
 	return dataset
 
 
@@ -89,6 +102,13 @@ def datasetfromrandom_org(numbers, mini, maxi, replacement, api_key):
 	if 'error' in response.text:
 		with open('json_files/request_random.json', 'w') as f_obj:
 			json.dump(response.text, f_obj)
+
+		if 'The operation requires' in response.text:
+			raise NotEnoughBitsError
+
+		elif "Parameter 'apiKey' is malformed" in response.text:
+			raise InvalidAPIKeyError
+
 		raise RandomOrgError
 	# Store the request in a .json file.
 	with open('json_files/request_random.json', 'w') as f_obj:
@@ -103,7 +123,7 @@ def datasetfromrandom_org(numbers, mini, maxi, replacement, api_key):
 	return dataset
 
 
-def generate_random_numbers(numbers, mini, maxi, replacement, api_key):
+def generate_random_numbers(numbers, mini, maxi, replacement, api_key, method='store'):
 	"""Get a new random number list using random.org and save it in 
 	the default directory."""
 	# If numbers are greater than 10000, random.org will generate an error.
@@ -120,14 +140,14 @@ def generate_random_numbers(numbers, mini, maxi, replacement, api_key):
 	else:
 		dataset = datasetfromrandom_org(numbers, mini, maxi, replacement, api_key)
 
-	# Store the dataset in the default directory.
-	default_dir = loaddef_dir()
-	with open(default_dir, 'w') as file:
-		json.dump(dataset, file)
-
 	# Print a message to inform the user that a new dataset was generated and return the dataset.
 	msg = "You have generated a new dataset using random.org."
-	print(msg, "It will be stored in the default directory.")
+	if method == 'store':
+		# Store the dataset in the default directory.
+		default_dir = loaddef_dir()
+		with open(default_dir, 'w') as file:
+			json.dump(dataset, file)
+		print(msg, "It will be stored in the default directory.")
 	return dataset
 
 
@@ -195,6 +215,7 @@ def print_dataset(dataset):
 def print_some_results(dataset, mode_var):
 	"""Used in show_results()"""
 	# If the dataset has more than 50 elements, do not print the dataset.
+	print("The dataset has", len(dataset), "elements. ", end="")
 	if len(dataset) < 50:
 		print("Dataset:", dataset)
 	else:
@@ -209,3 +230,13 @@ def print_some_results(dataset, mode_var):
 		print("Mode:", str(mode_var[0]) + ", Occurrences:", mode_var[1])
 	else:
 		print("Mode:", mode_var)
+
+
+def raise_method_error():
+	"""Raises a MethodError exception when called."""
+	raise MethodError
+
+
+def raise_mode_include_error():
+	"""Raises a ModeIncludeError exception when called."""
+	raise ModeIncludeError

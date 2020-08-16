@@ -4,28 +4,47 @@ class NTypeError(Exception):
 	"""Exception raised when ntype for (create_dataset_random_module()) is invalid."""
 
 	def __init__(self, method, message="Invalid input for ntype"):
-		self.method = method
-		self.message = message
-		super().__init__(self.message)
+		super().__init__(message)
 
 class CountNotIntegerError(Exception):
 	"""Exception raised when count (reset_count()) is not an integer."""
 
 	def __init__(self, count, message="count must be an integer"):
-		self.count = count
-		self.message = message
-		super().__init__(self.message)
+		super().__init__(message)
 
 class RandomOrgError(Exception):
-	"""Exception raised when invalid inputs are provided in grn()."""
+	"""Exception raised when random.org generates an error."""
 
-	def __init__(self, message="Invalid input for generate_random_dataset()"):
-		self.message = message
-		super().__init__(self.message)
+	def __init__(self, message="random.org generated an error"):
+		super().__init__(message)
+
+class InvalidAPIKeyError(Exception):
+	"""Exception raised when an invalid random.org API key is provided."""
+
+	def __init__(self, message="Invalid API key"):
+		super().__init__(message)
+
+class NotEnoughBitsError(Exception):
+	"""Exception raised when there aren't enough bits 
+	available in the provided random.org API key."""
+
+	def __init__(self, message="Not enough bits available"):
+		super().__init__(message)
 
 class InvalidPathError(Exception):
-	"""Exception raised when count (reset_count()) is not an integer."""
+	"""Exception raised when the provided path is invalid."""
 
-	def __init__(self, message="The path stored in json_files/default_directory.json is not a string."):
-		self.message = message
-		super().__init__(self.message)
+	def __init__(self, message="The path provided is invalid"):
+		super().__init__(message)
+
+class MethodError(Exception):
+	"""Exception raised when method is not 'store' or 'return'."""
+
+	def __init__(self, message="'method' must be 'store' or 'return'"):
+		super().__init__(message)
+
+class ModeIncludeError(Exception):
+	"""Exception raised when method is not 'include' or 'exclude'."""
+
+	def __init__(self, message="'mode_include' must be 'include' or 'exclude'"):
+		super().__init__(message)

@@ -12,10 +12,6 @@ class Calculator:
 		"""Initialize a calculator object."""
 		self.dataset = dataset
 
-	def use_recent_dataset(self, dataset):
-		"""Use the most recent dataset."""
-		self.dataset = dataset
-		
 	def mean(self):
 		"""Return the mean of the dataset."""
 		return cf.find_mean(self.dataset)
@@ -38,3 +34,6 @@ class Calculator:
 
 	def percentile(self, percentile):
 		return cf.find_percentile(self.dataset, percentile)
+
+	def occurrences(self):
+		return cf.find_occurrences(self.dataset)
