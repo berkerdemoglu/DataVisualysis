@@ -1,17 +1,17 @@
-## :heavy_exclamation_mark: *DO NOT FORGET TO*:
+## :heavy_exclamation_mark: *DO NOT FORGET TO* :heavy_exclamation_mark::
 >- Check files for sensitive info such as an API key.
 >- Make sure data_program.py just consists of instantiating a DataVisualysis object.
 >- Change development process (e.g 0.1.2 -> 0.1.3)
 
+
 ## INCOMPLETE TASKS:
 >- Write a proper file for testing DataVisualysis using the unittest module.
 >- Add ability to take info from SQL.
-
-## NOT STARTED:
 >- Learn how uploading packages to pip works.
 >- Learn how github command line works.
 >- Implement some functions from Excel.
 >- Add ability to generate a dataset with a specified standard deviation, median etc.
+
 
 ### Long Term Plan for the Project:
 >- All functions for analyzing data.
@@ -65,25 +65,48 @@
 
 
 ### Plan for August 17, 2020:
->- Study data visualization from PCCB.
->- Load the DataVisualysis logo.
->- Study some C++ from that 4-hour long video.
+>- Study data visualization from PCCB. X
+>- Load the DataVisualysis logo. ✓
+>- Study some C++ from that 4-hour long video. ✓
 >- Write the compare_datasets() function in data_visualysis.py
 >- Revise the methods of the DataVisualysis class.
 >- Revise the parameter names of all functions and methods.
->- Revise data_modeler_exceptions.
->- Rename files to match the project's name, DataVisualysis.
->- See if you need class methods.
+>- Revise data_modeler_exceptions. ✓
+>- Rename files to match the project's name, DataVisualysis. ✓
+>- See if you need class methods. DISCONTINUED
 >- Add comments.
 >- Look for some duplicate code, slowing down the program.
 >- See if you need to refactor some things.
->- Revise the check_directory() function.
->- Download the code and save it in the python_projects folder.
+>- Revise the check_directory() function. DISCONTINUED
+>- Download the code and save it in the python_projects folder. ✓
 
 
 ### Plan for August 18, 2020:
 >- Study data visualization from PCCB.
-
+>- Change development stage to 0.1.3.1
+>- OFF DAY FOR STUDIES
 
 ### Plan for August 19, 2020:
+>- Study data visualization from PCCB.
+>- Revise custom exceptions (e.g. ntype cannot be <inputvalue>).
+>- Add docstrings for exception classes.
+
+
+### Plan for August 20, 2020:
+>- Study data visualization from PCCB.
+
+
+### Plan for August 21, 2020:
+>- Study data visualization from PCCB.
+
+
+### Plan for August 22, 2020:
+>- Study data visualization from PCCB.
+
+
+### Plan for August 23, 2020:
+>- Study data visualization from PCCB.
+
+
+### Plan for August 24, 2020:
 >- Study data visualization from PCCB.
