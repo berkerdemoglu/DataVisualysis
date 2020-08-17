@@ -11,6 +11,11 @@
 >- Learn how github command line works.
 >- Implement some functions from Excel.
 >- Add ability to generate a dataset with a specified standard deviation, median etc.
+>- Add comments.
+>- Look for some duplicate code, slowing down the program.
+>- See if you need to refactor some things.
+>- Write the compare_datasets() function in data_visualysis.py.
+>- Revise the methods of the DataVisualysis class.
 
 
 ### Long Term Plan for the Project:
@@ -68,15 +73,15 @@
 >- Study data visualization from PCCB. X
 >- Load the DataVisualysis logo. ✓
 >- Study some C++ from that 4-hour long video. ✓
->- Write the compare_datasets() function in data_visualysis.py
->- Revise the methods of the DataVisualysis class.
->- Revise the parameter names of all functions and methods.
+>- Write the compare_datasets() function in data_visualysis.py. INCOMPLETE
+>- Revise the methods of the DataVisualysis class. INCOMPLETE
+>- Revise the parameter names of all functions and methods. DISCONTINUED
 >- Revise data_modeler_exceptions. ✓
 >- Rename files to match the project's name, DataVisualysis. ✓
 >- See if you need class methods. DISCONTINUED
->- Add comments.
->- Look for some duplicate code, slowing down the program.
->- See if you need to refactor some things.
+>- Add comments. INCOMPLETE
+>- Look for some duplicate code, slowing down the program. INCOMPLETE
+>- See if you need to refactor some things. INCOMPLETE
 >- Revise the check_directory() function. DISCONTINUED
 >- Download the code and save it in the python_projects folder. ✓
 
@@ -85,11 +90,15 @@
 >- Study data visualization from PCCB.
 >- Change development stage to 0.1.3.1
 >- OFF DAY FOR STUDIES
+>- Study geometry.
+>- Create a plan for finishing HW.
+>- Check which classes have given HW.
 
 ### Plan for August 19, 2020:
 >- Study data visualization from PCCB.
 >- Revise custom exceptions (e.g. ntype cannot be <inputvalue>).
 >- Add docstrings for exception classes.
+>- Rename README.md files in folders (json_files etc.)
 
 
 ### Plan for August 20, 2020:
