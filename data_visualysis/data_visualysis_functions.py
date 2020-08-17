@@ -2,76 +2,109 @@ import requests
 import json
 import random
 from math import floor, fmod
-from data_modeler_exceptions import *
+from data_visualysis_exceptions import *
 
-def read_api_key(path):
+
+def return_api_key(path):
 	"""Loads the API key from a given file path. 
-	The default option is the file, json_files/api_key.json. """	# Load the API key from the provided file.
+	The default option is the file, json_files/api_key.json."""
+	# Load the API key from the provided file.
 	with open(path, 'r') as f_obj:
 		api_key = json.load(f_obj)
-	return api_key
+
+	return api_key # Return the API key.
+
+
+def write_api_key(api_key, path):
+	"""Writes the API key to a file."""
+	# Store the API key in a file.
+	with open(path, 'w') as f_obj:
+		json.dump(api_key, f_obj)
+	# Print a message informing the user of successfully writing the API key.
+	print("Stored the provided API key in {}".format(path) + ".")
 
 
 def chdef_dir(path):
-	"""Used in change_default_directory()"""
+	"""Changes the default directory stored in json_files/default_directory.json."""
 	# Dump the provided path to a file.
 	with open('json_files/default_directory.json', 'w') as f_obj:
 		json.dump(path, f_obj)
 
+	# If a path was not provided, the default directory 
+	# will be presumed as json_files/numbers_data.json.
 	if path == 'json_files/numbers_data.json':
 		msg = "You have not provided a path for the default directory."
-		print(msg + " The presumed directory,", path, "will be used.")
+		print(msg, "The presumed directory,", path, "will be used.")
 	else:
 		print("Default directory changed to", path + ".")
 
 
 def loaddef_dir():
-	"""Used in some functions to load the default directory."""
+	"""Loads the default directory stored in 
+	json_files/default_directory.json and returns it."""
+	# Read the stored default directory.
 	with open('json_files/default_directory.json', 'r') as f_obj:
 		stored_path = json.load(f_obj)
 
 	# If stored path is not a string, raise an error.
 	if not isinstance(stored_path, str):
-		raise InvalidPathError
-	return stored_path
+		raise InvalidStoredPathError
+
+	return stored_path # Return the default directory.
 
 
 def init_datavisualysis(path, dataset):
-	"""Used in __init__()"""
+	"""Helps initialize a DataVisualysis object. Used in the __init__ method."""
 
-	if not dataset and not path: # if neither dataset nor path was not provided:
+	# If neither a dataset nor a path was not provided:
+	if not dataset and not path:
 		filename = loaddef_dir()
 		with open(filename, 'r') as file:
 			dataset = json.load(file)
-		msg = "You have provided neither a data set or a file path. \nThe dataset in the "
-		msg += "default directory, {}, will be used.".format(filename)
+		msg = "You have provided neither a data set or a file path. \nThe dataset"
+		msg += " in the default directory, {}, will be used.".format(filename)
 		print(msg, "(You can change the dataset later).\n")
-	elif not dataset and path: # if only path was provided:
+
+	# If only a path was provided:
+	elif not dataset and path:
 		with open(path, 'r') as file:
 			dataset = json.load(file)
 		print("The dataset you provided in the file will be used.\n")
-	elif dataset and not path: # if only dataset was provided:
+
+	# If only a dataset was provided:
+	elif dataset and not path:
 		print("The dataset you provided will be used.\n")
-	else: # if dataset and path were provided:
+
+	# If a dataset and a path were provided:
+	else: 
 		with open(path, 'r') as file:
 			dataset = json.load(file)
 		print("You have provided both the data set and the file path.", 
 			"The data set in the file will be used.\n")
-	return dataset
+
+	return dataset # Return the dataset.
 
 
 def create_dataset_random_module(mini, maxi, numbers, ntype, method='store'):
 	"""Used in create_offline_random_dataset"""
+
+	# Generates random decimal numbers.
 	if ntype == 'float':
 		dataset = [random.uniform(mini,maxi) for i in range(1,numbers+1)]
 		msg = "You have generated a new dataset of decimal numbers using the random module."
+
+	# Generates random integers.
 	elif ntype == 'int':
 		dataset = [random.randint(mini,maxi) for i in range(1,numbers+1)]
 		msg = "You have generated a new dataset of integers using the random module."
+
+	# Raises an error if ntype is not 'float' or 'int'.
 	else:
 		raise NTypeError(ntype)
 
+	# Load the default directory.
 	default_dir = loaddef_dir()
+	# Store the dataset in the default directory.
 	with open(default_dir, 'w') as file:
 		json.dump(dataset, file)
 

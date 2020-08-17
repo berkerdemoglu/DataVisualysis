@@ -1,6 +1,7 @@
-import calculator_functions as cf
+import statistics_functions as sf
 
-class Calculator:
+
+class StatisticsCalculator:
 	"""
 	A class that calculates values such as median,
 	mode etc. Used for data analysis. Also contains
@@ -14,26 +15,26 @@ class Calculator:
 
 	def mean(self):
 		"""Return the mean of the dataset."""
-		return cf.find_mean(self.dataset)
+		return sf.find_mean(self.dataset)
 
 	def median(self):
 		"""Return the median of the dataset."""
-		return cf.find_median(self.dataset)
+		return sf.find_median(self.dataset)
 
 	def mode(self, mode_occurrence="no"):
 		"""Return the mode of the dataset."""
-		return cf.find_mode(self.dataset, mode_occurrence)
+		return sf.find_mode(self.dataset, mode_occurrence)
 
 	def std(self):
 		"""Return the standard deviation of the dataset."""
-		return cf.find_standard_deviation(self.dataset)
+		return sf.find_standard_deviation(self.dataset)
 
 	def var(self):
 		"""Return the variance of the dataset."""
-		return cf.find_variance(self.dataset)
+		return sf.find_variance(self.dataset)
 
 	def percentile(self, percentile):
-		return cf.find_percentile(self.dataset, percentile)
+		return sf.find_percentile(self.dataset, percentile)
 
 	def occurrences(self):
-		return cf.find_occurrences(self.dataset)
+		return sf.find_occurrences(self.dataset)

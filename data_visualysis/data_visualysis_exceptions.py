@@ -1,15 +1,15 @@
-# The exceptions used in data_modeler_functions.py.
+# The exceptions used in data_visualysis_functions.py.
 
 class NTypeError(Exception):
 	"""Exception raised when ntype for (create_dataset_random_module()) is invalid."""
 
-	def __init__(self, method, message="Invalid input for ntype"):
+	def __init__(self, message="Invalid input for ntype"):
 		super().__init__(message)
 
 class CountNotIntegerError(Exception):
 	"""Exception raised when count (reset_count()) is not an integer."""
 
-	def __init__(self, count, message="count must be an integer"):
+	def __init__(self, message="count must be an integer"):
 		super().__init__(message)
 
 class RandomOrgError(Exception):
@@ -31,8 +31,8 @@ class NotEnoughBitsError(Exception):
 	def __init__(self, message="Not enough bits available"):
 		super().__init__(message)
 
-class InvalidPathError(Exception):
-	"""Exception raised when the provided path is invalid."""
+class InvalidStoredPathError(Exception):
+	"""Exception raised when the stored path is not a string."""
 
 	def __init__(self, message="The path provided is invalid"):
 		super().__init__(message)
@@ -44,7 +44,7 @@ class MethodError(Exception):
 		super().__init__(message)
 
 class ModeIncludeError(Exception):
-	"""Exception raised when method is not 'include' or 'exclude'."""
+	"""Exception raised when mode_include is not 'include' or 'exclude'."""
 
 	def __init__(self, message="'mode_include' must be 'include' or 'exclude'"):
 		super().__init__(message)

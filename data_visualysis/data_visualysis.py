@@ -1,10 +1,11 @@
-from calculator import Calculator
-import data_modeler_functions as dmf
+from statistics_calculator import StatisticsCalculator
+import data_visualysis_functions as dvf
+
 
 """If this file is being imported, print a message to the console, 
 specifying the version of DataVisualysis."""
 if __name__ != '__main__':
-	print("© DataVisualysis 0.1.3\n")
+	print("© DataVisualysis 0.1.3.1\n")
 
 class DataVisualysis:
 	"""A class for data visualization and analysis.
@@ -20,8 +21,8 @@ class DataVisualysis:
 		@param path: The path of the file containing the data set
 		@param dataset: The dataset itself
 		"""
-		self.dataset = dmf.init_datavisualysis(path, dataset)
-		self.calculate = Calculator(self.dataset)
+		self.dataset = dvf.init_datavisualysis(path, dataset)
+		self.calculate = StatisticsCalculator(self.dataset)
 
 	# Regular Methods
 	def generate_random_dataset(self, api_key, numbers=100, mini=0, 
@@ -40,12 +41,12 @@ class DataVisualysis:
 		# Call get_random_numbers to get random numbers (grn stands for get_random_numbers).
 		# Set self.dataset to the generated numbers in list format.
 		if method == 'return':
-			return dmf.generate_random_numbers(numbers, mini, maxi, replacement, api_key, method)
+			return dvf.generate_random_numbers(numbers, mini, maxi, replacement, api_key, method)
 		elif method == 'store':
-			self.dataset = dmf.generate_random_numbers(numbers, mini, maxi, replacement, api_key)
+			self.dataset = dvf.generate_random_numbers(numbers, mini, maxi, replacement, api_key)
 			self.calculate.dataset = self.dataset
 		else:
-			dmf.raise_method_error()
+			dvf.raise_method_error()
 
 	def generate_offline_random_dataset(self, mini=0, 
 		maxi=100, numbers=100, ntype="int", method="store"):
@@ -60,12 +61,12 @@ class DataVisualysis:
 		@param ntype: The type of numbers you want to generate - "int" or "float"
 		"""
 		if method == 'return':
-			return dmf.create_dataset_random_module(mini, maxi, numbers, ntype, method)
+			return dvf.create_dataset_random_module(mini, maxi, numbers, ntype, method)
 		elif method == 'store':
-			self.dataset = dmf.create_dataset_random_module(mini, maxi, numbers, ntype)
+			self.dataset = dvf.create_dataset_random_module(mini, maxi, numbers, ntype)
 			self.calculate.dataset = self.dataset
 		else:
-			dmf.raise_method_error()
+			dvf.raise_method_error()
 
 	def use_specific_dataset(self, path='json_files/numbers_data.json'):
 		"""
@@ -75,7 +76,7 @@ class DataVisualysis:
 
 		@param path: The path of the .json file containing the dataset
 		"""
-		self.dataset = dmf.use_specfdir(path)
+		self.dataset = dvf.use_specfdir(path)
 		self.calculate.dataset = self.dataset
 
 	def save_current_dataset(self, path=None):
@@ -89,7 +90,7 @@ class DataVisualysis:
 		@param path: The path of the file to be saved
 		"""
 		# If a path was not provided, save the file in the default directory.
-		dmf.save_dataset(path, self.dataset)
+		dvf.save_dataset(path, self.dataset)
 
 	def show_dataset(self):
 		"""
@@ -97,7 +98,7 @@ class DataVisualysis:
 		if the dataset is larger than 30 elements.
 		If user inputs 'y', the whole dataset is printed. If user inputs 'n',
 		"""
-		dmf.print_dataset(self.dataset)
+		dvf.print_dataset(self.dataset)
 
 	def show_results(self, mode_occurrence="no"):
 		"""
@@ -106,7 +107,7 @@ class DataVisualysis:
 		@param mode_occurrence: Include how many times the mode of the dataset occurs or not
 		"""
 		mode_var = self.calculate.mode(mode_occurrence)
-		dmf.print_some_results(self.dataset, mode_var)
+		dvf.print_some_results(self.dataset, mode_var)
 		print("Mean:", self.calculate.mean())
 		print("1st Quartile:", self.calculate.percentile(25))
 		print("Median (2nd Quartile):", self.calculate.median())
@@ -126,7 +127,7 @@ class DataVisualysis:
 		elif mode_include == 'exclude':
 			pass
 		else:
-			dmf.raise_mode_include_error()
+			dvf.raise_mode_include_error()
 		return self.calculate.occurrences()
 
 	# Static and Class Methods
@@ -137,7 +138,7 @@ class DataVisualysis:
 
 		@param count: The file count to be stored in json_files/file_count.json
 		"""
-		dmf.reset_count(count)
+		dvf.reset_count(count)
 
 	@staticmethod
 	def change_default_directory(path='json_files/numbers_data.json'):
@@ -147,12 +148,22 @@ class DataVisualysis:
 		@param path: The path of the file to be used as the default directory.
 		Default option for the path is json_files/numbers_data.json.
 		"""
-		dmf.chdef_dir(path)
+		dvf.chdef_dir(path)
+
+	@staticmethod
+	def store_api_key(api_key, path="json_files/api_key.json"):
+		"""
+		Stores the api key in a file.
+
+		@param api_key: The api key to be stored.
+		@param path: The path to the .json file to store the key in.
+		"""
+		dvf.write_api_key(api_key, path)
 
 	@staticmethod
 	def load_api_key(path="json_files/api_key.json"):
 		"""Returns the stored API key."""
-		return dmf.read_api_key(path)
+		return dvf.return_api_key(api_key, path)
 
 	@staticmethod
 	def compare_datasets(dataset1, dataset2):
