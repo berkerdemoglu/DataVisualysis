@@ -3,8 +3,8 @@ Currently incomplete. Will be used to test the functions of data_visualysis.py
 """
 
 import sys
-
 sys.path.append('D:/kodlama/python modules/other projects/python_machine_learning/data_modeler')
+
 import unittest
 from data_visualysis import DataVisualysis
 
