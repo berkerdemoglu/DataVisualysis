@@ -5,17 +5,17 @@
 
 
 ## INCOMPLETE TASKS:
->- Write a proper file for testing DataVisualysis using the unittest module.
 >- Add ability to take info from SQL.
 >- Learn how uploading packages to pip works.
 >- Learn how github command line works.
 >- Implement some functions from Excel.
 >- Add ability to generate a dataset with a specified standard deviation, median etc.
->- Add comments.
 >- Look for some duplicate code, slowing down the program.
 >- See if you need to refactor some things.
 >- Write the compare_datasets() function in data_visualysis.py.
->- Revise the methods of the DataVisualysis class.
+>- Revise custom exceptions (e.g. ntype cannot be <inputvalue>).
+>- Write the compare_datasets() function in data_visualysis.py.
+>- Revise save_dataset() in data_visualysis_functions.py. (f_obj.write() -> json.dump etc.)
 
 
 ### Long Term Plan for the Project:
@@ -23,6 +23,7 @@
 >- The ability to visualize data using matplotlib with a little touches from me.
 >- Deploy the module using pip.
 >- Create a website for the project.
+>- Add a tkinter GUI.
 
 
 ### Plan for August 12, 2020:
@@ -87,18 +88,26 @@
 
 
 ### Plan for August 18, 2020:
->- Study data visualization from PCCB.
->- Change development stage to 0.1.3.1
->- OFF DAY FOR STUDIES
+>- Study data visualization from PCCB. X
+>- Change development stage to 0.1.3.2. ✓
+>- Revise custom exceptions (e.g. ntype cannot be <inputvalue>). INCOMPLETE
+>- Add docstrings for exception classes. ✓
+>- Rename README.md files in folders (json_files etc.). ✓
+>- Revise save_dataset() in data_visualysis_functions.py. (f_obj.write() -> json.dump etc.)
+>- Create the skeleton of test_data_visualysis.py. ✓
+>- Add comments. ✓
+>- Write the compare_datasets() function in data_visualysis.py.
+>- Revise the methods of the DataVisualysis class. ✓
+
+
 >- Study geometry.
 >- Create a plan for finishing HW.
 >- Check which classes have given HW.
 
+
 ### Plan for August 19, 2020:
 >- Study data visualization from PCCB.
->- Revise custom exceptions (e.g. ntype cannot be <inputvalue>).
->- Add docstrings for exception classes.
->- Rename README.md files in folders (json_files etc.)
+
 
 
 ### Plan for August 20, 2020:
