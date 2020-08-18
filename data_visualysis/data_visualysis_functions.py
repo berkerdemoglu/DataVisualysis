@@ -102,15 +102,21 @@ def create_dataset_random_module(mini, maxi, numbers, ntype, method='store'):
 	else:
 		raise NTypeError(ntype)
 
-	# Load the default directory.
-	default_dir = loaddef_dir()
-	# Store the dataset in the default directory.
-	with open(default_dir, 'w') as file:
-		json.dump(dataset, file)
-
 	if method == 'store':
-		print(msg, "The dataset will be stored in the default directory.")
-	return dataset
+		# Store the dataset in the default directory.
+		# Load the default directory.
+		default_dir = loaddef_dir()
+		with open(default_dir, 'w') as file:
+			json.dump(dataset, file)
+		print(msg, "\nIt will be stored in the default directory.")
+
+	elif method == 'return':
+		# Returns the dataset.
+		return dataset
+
+	else:
+		# Raise an error if method is not 'store' and 'return'.
+		raise MethodError(method)
 
 
 def datasetfromrandom_org(numbers, mini, maxi, replacement, api_key):
@@ -131,29 +137,35 @@ def datasetfromrandom_org(numbers, mini, maxi, replacement, api_key):
 	params = json.dumps(data)
 	response = requests.post(url, params)
 	
-	# If invalid inputs have been provided for grn():
+	# If invalid inputs have been provided:
 	if 'error' in response.text:
+		# Store the error response in a .json file.
 		with open('json_files/request_random.json', 'w') as f_obj:
 			json.dump(response.text, f_obj)
 
+		# If the API key does not have enough bits for the operation:
 		if 'The operation requires' in response.text:
 			raise NotEnoughBitsError
 
+		# If an invalid API key was provided:
 		elif "Parameter 'apiKey' is malformed" in response.text:
 			raise InvalidAPIKeyError
 
+		# If some other error occurred:
 		raise RandomOrgError
-	# Store the request in a .json file.
+
+	# Store the response in a .json file.
 	with open('json_files/request_random.json', 'w') as f_obj:
 		json.dump(response.text, f_obj)
 
 	# Store the generated numbers in a .json file list format with integer elements.
 	data_index = response.text.index("data")
 	completion_index = response.text.index("completion")
-	stored_data = response.text[data_index + 6:completion_index - 2]
-	listified_data = stored_data.strip('[]').replace('"', '').replace(' ', '').split(',')
+	stringified_data = response.text[data_index + 6:completion_index - 2]
+	listified_data = stringified_data.strip('[]').replace('"', '').replace(' ', '').split(',')
 	dataset = [int(n) for n in listified_data]
-	return dataset
+
+	return dataset # Return the dataset.
 
 
 def generate_random_numbers(numbers, mini, maxi, replacement, api_key, method='store'):
@@ -176,20 +188,29 @@ def generate_random_numbers(numbers, mini, maxi, replacement, api_key, method='s
 	# Print a message to inform the user that a new dataset was generated and return the dataset.
 	msg = "You have generated a new dataset using random.org."
 	if method == 'store':
-		# Store the dataset in the default directory.
+		# Load the default directory.
 		default_dir = loaddef_dir()
+		# Store the dataset in the default directory.
 		with open(default_dir, 'w') as file:
 			json.dump(dataset, file)
-		print(msg, "It will be stored in the default directory.")
-	return dataset
+		print(msg, "\nIt will be stored in the default directory.")
+
+	elif method == 'return':
+		# Return the dataset.
+		return dataset
+
+	else:
+		# Raise an error if method is not 'store' and 'return'.
+		raise MethodError
 
 
 def reset_count(count):
 	"""Used in set_file_count()"""
+	# If count is not an integer, raise an exception.
 	if not isinstance(count, int):
-		# if count is not an integer, raise an exception.
 		raise CountNotIntegerError(count)
 
+	# Store the provided value in a .json file.
 	with open('json_files/file_count.json', 'w') as f_obj:
 		f_obj.write(str(count))
 	print("Reset the file count in json_files/file_count.json to", str(count) + ".")
@@ -197,50 +218,68 @@ def reset_count(count):
 
 def use_specfdir(path):
 	"""Used in use_specific_dataset()"""
+	# Load the dataset.
 	with open(path, 'r') as file:
 		dataset = json.load(file)
 	print("You are now using the dataset stored in {}".format(path) + ".")
-	return dataset
+
+	return dataset # Return the dataset.
 
 
 def save_dataset(path, dataset):
 	"""Used in save_current_dataset"""
+	# If a path for the save was not provided, save the current
+	# dataset with the suffix in json_files/file_count.json.
 	if not path:
+		# Read the count in file_count.json
 		with open('json_files/file_count.json', 'r') as f_obj:
 			current_count = f_obj.read()
 			save_file = 'saved_files/dataset_{}'.format(current_count) + '.json'
 
+		# Increment the file_count by 1.
 		with open('json_files/file_count.json', 'w') as f_obj:
 			f_obj.write(str(int(current_count) + 1))
 
+		# Write the dataset in the save file.
 		with open(save_file, 'w') as f_obj:
 			json.dump(dataset, f_obj)
+
 		print("Saved the file in {}".format(save_file) + ".")
 
 	# Else, save the file in the provided directory.
 	else:
+		# Save the dataset in the provided path.
 		with open(path, 'w') as f_obj:
 			json.dump(dataset, f_obj)
+
 		print("Saved the file in {}".format(path) + ".")
 
 
 def print_dataset(dataset):
 	"""Used in show_dataset()"""
+	# If the dataset has more than 30 elements, ask the user
+	# if they wish to see the whole dataset.
 	if len(dataset) > 30:
 		prompt = "Would you like to see the whole dataset? It is "
-		prompt += str(len(dataset)) + " elements long.\n"
-		prompt += "(Enter 'y' to see the whole dataset, 'n' to see a part of the dataset.)\n"
+		prompt += "{} elements long.\n(Enter 'y' to ".format(len(dataset))
+		prompt += "see the whole dataset, 'n' to see a part of the dataset.)\n"
+		# Create a while loop to accept only valid responses such as 'y' or 'n'.
 		while True:
 			user_choice = input(prompt)
+			# Print the whole dataset.
 			if user_choice == 'y':
 				print(dataset)
 				break
+
+			# Print the first and last 10 elements of the dataset.
 			elif user_choice == 'n':
 				print(dataset[0:9], "...", dataset[-10:])
 				break
 			else: # if invalid input:
 				print("You have entered an invalid value. Please try again.")
+
 	else:
+		# Print the whole dataset.
 		print("The dataset is {} elements long.\n".format(len(dataset)))
 		print(dataset)
 
@@ -261,15 +300,19 @@ def print_some_results(dataset, mode_var):
 	# Print the mode of the dataset.
 	if isinstance(mode_var, list):
 		print("Mode:", str(mode_var[0]) + ", Occurrences:", mode_var[1])
+
+	elif mode_var == "The list has no mode.":
+		print(mode_var)
+
 	else:
 		print("Mode:", mode_var)
 
 
-def raise_method_error():
+def raise_method_error(method):
 	"""Raises a MethodError exception when called."""
-	raise MethodError
+	raise MethodError(method)
 
 
-def raise_mode_include_error():
+def raise_mode_include_error(mode_include):
 	"""Raises a ModeIncludeError exception when called."""
-	raise ModeIncludeError
+	raise ModeIncludeError(mode_include)
