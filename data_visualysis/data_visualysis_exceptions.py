@@ -40,11 +40,11 @@ class InvalidStoredPathError(Exception):
 class MethodError(Exception):
 	"""Exception raised when method is not 'store' or 'return'."""
 
-	def __init__(self, message="'method' must be 'store' or 'return'"):
-		super().__init__(message)
+	def __init__(self, method, message="method must be 'store' or 'return': "):
+		super().__init__(message + "method cannot be '{}'".format(method))
 
 class ModeIncludeError(Exception):
 	"""Exception raised when mode_include is not 'include' or 'exclude'."""
 
-	def __init__(self, message="'mode_include' must be 'include' or 'exclude'"):
-		super().__init__(message)
+	def __init__(self, mode_include, message="mode_include must be 'true' or 'false': "):
+		super().__init__(message + "mode_include cannot be '{}'".format(mode_include))

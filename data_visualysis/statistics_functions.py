@@ -48,6 +48,7 @@ def find_occurrences(number_list):
 			original_list.remove(sorted_number_list[i])
 			count += 1
 			counts[sorted_number_list[i]] = count
+			
 	return counts # Return the dictionary that stores occurrences of each number.
 
 def find_mode(number_list, occurrence="no"):

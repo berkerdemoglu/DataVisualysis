@@ -5,6 +5,4 @@ class OccurrenceError(Exception):
 
 	def __init__(self, occurrence, 
 		message="Occurrence must be 'yes' or 'no': "):
-
-		self.occurrence = occurrence
-		super().__init__(message + "Occurrence cannot be {}".format(self.occurrence))
+		super().__init__(message + "Occurrence cannot be {}".format(occurrence))
