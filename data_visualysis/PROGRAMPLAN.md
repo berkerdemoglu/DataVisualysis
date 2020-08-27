@@ -105,17 +105,14 @@
 >- Check which classes have given HW.
 
 
-### Plan for August 27, 2020:
+### Plan for August 28, 2020:
 >- Study data visualization from PCCB.
 >- Call load_api_key in constructor method.
 
 
-### Plan for August 28, 2020:
->- Study data visualization from PCCB.
-
-
 ### Plan for August 29, 2020:
 >- Study data visualization from PCCB.
+>- Finish writing the plot_scatter function in dvf.
 
 
 ### Plan for August 30, 2020:
