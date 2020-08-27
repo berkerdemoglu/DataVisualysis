@@ -48,3 +48,9 @@ class ModeIncludeError(Exception):
 
 	def __init__(self, mode_include, message="mode_include must be 'true' or 'false': "):
 		super().__init__(message + "mode_include cannot be '{}'".format(mode_include))
+
+class ColormapError(Exception):
+	"""Exception raised when mode_include is not 'include' or 'exclude'."""
+
+	def __init__(self, colormap, message="No such color map"):
+		super().__init__(message + " as '{}'".format(colormap))
