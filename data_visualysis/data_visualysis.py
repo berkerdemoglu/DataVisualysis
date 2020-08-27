@@ -4,13 +4,14 @@ import data_visualysis_functions as dvf
 """If this file is being imported, print a message to the terminal, 
 specifying the version of DataVisualysis."""
 if __name__ != '__main__':
-	print("© DataVisualysis 0.1.3.2\n")
+	print("© DataVisualysis 0.2.0\n")
 
 
 class DataVisualysis:
 	"""A class for data visualization and analysis.
 	The main class of DataVisualysis."""
 
+	# DUNDER METHODS
 	def __init__(self, path=None, dataset=None):
 		"""
 		Initialize the data modeler object. A data set or a file path 
@@ -21,10 +22,24 @@ class DataVisualysis:
 		@param path: The path of the file containing the data set.
 		@param dataset: The dataset itself.
 		"""
-		self.dataset = dvf.init_datavisualysis(path, dataset)
+		self.dataset = dvf.init_dataset(path, dataset)
 		self.calculate = StatisticsCalculator(self.dataset)
+		if path:
+			self.path = path
+		else:
+			self.path = 'No path provided'
 
-	# Regular Methods
+	def __repr__(self):
+		"""Return the string representation of this object. Fallback method."""
+		return dvf.reprstr_method(self.dataset, self.path)
+
+	def __str__(self):
+		"""Return the string representation of this object. 
+		Called when printing the object to the terminal."""
+		return dvf.reprstr_method(self.dataset, self.path)
+
+
+	# REGULAR METHODS
 	def generate_random_dataset(self, api_key, numbers=100, mini=0, 
 		maxi=100, replacement="true", method="store"):
 		"""
@@ -48,8 +63,8 @@ class DataVisualysis:
 			 api_key, method)
 
 		elif method == 'store':
-			self.dataset = dvf.generate_random_numbers(numbers, mini, maxi, replacement,
-			 api_key, method)
+			self.dataset = dvf.generate_random_numbers(numbers, mini, maxi, replacement, 
+				api_key, method)
 			self.calculate.dataset = self.dataset
 
 		else:
@@ -144,15 +159,16 @@ class DataVisualysis:
 			dvf.raise_mode_include_error(mode_include)
 		return self.calculate.occurrences()
 
-	# Static and Class Methods
+
+	# STATIC AND CLASS METHODS
 	@staticmethod
-	def set_file_count(count=0):
+	def set_file_count(count=0, path="json_files/file_count.json"):
 		"""
 		Sets the file count in json_files/file_count.json.
 
 		@param count: The file count to be stored in json_files/file_count.json
 		"""
-		dvf.reset_count(count)
+		dvf.reset_count(count, path)
 
 	@staticmethod
 	def change_default_directory(path='json_files/numbers_data.json'):
@@ -193,3 +209,10 @@ class DataVisualysis:
 		"""
 		# NOT IMPLEMENTED YET!
 		pass
+
+
+	# GRAPH METHODS
+	def scatter_dataset(self, colormap):
+		"""Scatters the values in the dataset and 
+		plots the graph using matplotlib."""
+		dvf.plot_scatter(self.dataset, colormap)

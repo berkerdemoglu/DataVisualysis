@@ -1,8 +1,11 @@
 import requests
 import json
 import random
+import matplotlib.pyplot as plt
+import numpy as np
 from math import floor, fmod
 from data_visualysis_exceptions import *
+from collections import namedtuple
 
 
 def return_api_key(path):
@@ -25,7 +28,8 @@ def write_api_key(api_key, path):
 
 
 def chdef_dir(path):
-	"""Changes the default directory stored in json_files/default_directory.json."""
+	"""Changes the default directory stored in 
+	json_files/default_directory.json."""
 	# Dump the provided path to a file.
 	with open('json_files/default_directory.json', 'w') as f_obj:
 		json.dump(path, f_obj)
@@ -53,7 +57,7 @@ def loaddef_dir():
 	return stored_path # Return the default directory.
 
 
-def init_datavisualysis(path, dataset):
+def init_dataset(path, dataset):
 	"""Helps initialize a DataVisualysis object. Used in the __init__ method."""
 
 	# If neither a dataset nor a path was not provided:
@@ -61,8 +65,8 @@ def init_datavisualysis(path, dataset):
 		filename = loaddef_dir()
 		with open(filename, 'r') as file:
 			dataset = json.load(file)
-		msg = "You have provided neither a data set or a file path. \nThe dataset"
-		msg += " in the default directory, {}, will be used.".format(filename)
+		msg = "You have provided neither a data set or a file path. \nThe datas"
+		msg += "et in the default directory, {}, will be used.".format(filename)
 		print(msg, "(You can change the dataset later).\n")
 
 	# If only a path was provided:
@@ -91,12 +95,14 @@ def create_dataset_random_module(mini, maxi, numbers, ntype, method='store'):
 	# Generates random decimal numbers.
 	if ntype == 'float':
 		dataset = [random.uniform(mini,maxi) for i in range(1,numbers+1)]
-		msg = "You have generated a new dataset of decimal numbers using the random module."
+		msg = "You have generated a new dataset of decimal "
+		msg += "numbers using the random module."
 
 	# Generates random integers.
 	elif ntype == 'int':
 		dataset = [random.randint(mini,maxi) for i in range(1,numbers+1)]
-		msg = "You have generated a new dataset of integers using the random module."
+		msg = "You have generated a new dataset of integers "
+		msg += "using the random module."
 
 	# Raises an error if ntype is not 'float' or 'int'.
 	else:
@@ -158,17 +164,19 @@ def datasetfromrandom_org(numbers, mini, maxi, replacement, api_key):
 	with open('json_files/request_random.json', 'w') as f_obj:
 		json.dump(response.text, f_obj)
 
-	# Store the generated numbers in a .json file list format with integer elements.
+	# Store the generated numbers in a .json file list 
+	# format with integer elements.
 	data_index = response.text.index("data")
 	completion_index = response.text.index("completion")
 	stringified_data = response.text[data_index + 6:completion_index - 2]
-	listified_data = stringified_data.strip('[]').replace('"', '').replace(' ', '').split(',')
-	dataset = [int(n) for n in listified_data]
+	listified_data = stringified_data.strip('[]').replace('"', '')
+	dataset = [int(n) for n in listified_data.replace(' ', '').split(',')]
 
 	return dataset # Return the dataset.
 
 
-def generate_random_numbers(numbers, mini, maxi, replacement, api_key, method='store'):
+def generate_random_numbers(numbers, mini, maxi, replacement, 
+	api_key, method='store'):
 	"""Get a new random number list using random.org and save it in 
 	the default directory."""
 	# If numbers are greater than 10000, random.org will generate an error.
@@ -180,12 +188,16 @@ def generate_random_numbers(numbers, mini, maxi, replacement, api_key, method='s
 		remainder = fmod(numbers, 10000)
 		for i in range(0, floored):
 			# Add 10000 numbers in each iteration.
-			dataset.extend(datasetfromrandom_org(10000, mini, maxi, replacement, api_key))
-		dataset.extend(datasetfromrandom_org(remainder, mini, maxi, replacement, api_key))
+			dataset.extend(datasetfromrandom_org(10000, mini, maxi, replacement, 
+				api_key))
+		dataset.extend(datasetfromrandom_org(remainder, mini, maxi, replacement, 
+			api_key))
 	else:
-		dataset = datasetfromrandom_org(numbers, mini, maxi, replacement, api_key)
+		dataset = datasetfromrandom_org(numbers, mini, maxi, replacement, 
+			api_key)
 
-	# Print a message to inform the user that a new dataset was generated and return the dataset.
+	# Print a message to inform the user that a new dataset 
+	# swas generated and return the dataset.
 	msg = "You have generated a new dataset using random.org."
 	if method == 'store':
 		# Load the default directory.
@@ -204,16 +216,16 @@ def generate_random_numbers(numbers, mini, maxi, replacement, api_key, method='s
 		raise MethodError
 
 
-def reset_count(count):
+def reset_count(count, path):
 	"""Used in set_file_count()"""
 	# If count is not an integer, raise an exception.
 	if not isinstance(count, int):
 		raise CountNotIntegerError(count)
 
 	# Store the provided value in a .json file.
-	with open('json_files/file_count.json', 'w') as f_obj:
+	with open(path, 'w') as f_obj:
 		f_obj.write(str(count))
-	print("Reset the file count in json_files/file_count.json to", str(count) + ".")
+	print("Reset the file count in {} to".format(path), str(count) + ".")
 
 
 def use_specfdir(path):
@@ -306,6 +318,79 @@ def print_some_results(dataset, mode_var):
 
 	else:
 		print("Mode:", mode_var)
+
+
+def set_scatter_values(argcolormap):
+	"""Used in plot_scatter(). Sets values like colormap, fontsize etc."""
+	colormaps = {
+		'viridis': plt.cm.viridis,'plasma': plt.cm.plasma,
+		'inferno': plt.cm.inferno,'magma': plt.cm.magma,
+		'cividis': plt.cm.cividis,'Greys': plt.cm.Greys,
+		'Purples': plt.cm.Purples,'Blues': plt.cm.Blues,'Greens': plt.cm.Greens,
+		'Oranges': plt.cm.Oranges,'Reds': plt.cm.Reds,'YlOrBr': plt.cm.YlOrBr,
+		'YlOrRd': plt.cm.YlOrRd,'OrRd': plt.cm.OrRd,'PuRd': plt.cm.PuRd,
+		'RdPu': plt.cm.RdPu,'BuPu': plt.cm.BuPu,'GnBu': plt.cm.GnBu,
+		'PuBu': plt.cm.PuBu,'YlGnBu': plt.cm.YlGnBu,'PuBuGn': plt.cm.PuBuGn,
+		'BuGn': plt.cm.BuGn,'YlGn': plt.cm.YlGn,'binary': plt.cm.binary,
+		'gist_yarg': plt.cm.gist_yarg,'gist_gray': plt.cm.gist_gray,
+		'gray': plt.cm.gray,'bone': plt.cm.bone,
+		'pink': plt.cm.pink,'spring': plt.cm.spring,'summer': plt.cm.summer,
+		'autumn': plt.cm.autumn,'winter': plt.cm.winter,'cool': plt.cm.cool,
+		'Wistia': plt.cm.Wistia,'hot': plt.cm.hot,'afmhot': plt.cm.afmhot,
+		'gist_heat': plt.cm.gist_heat,'copper': plt.cm.copper,
+		'PiYG': plt.cm.PiYG,'PRGn': plt.cm.PRGn,'BrBG': plt.cm.BrBG,
+		'PuOr': plt.cm.PuOr,'RdGy': plt.cm.RdGy,'RdBu': plt.cm.RdBu,
+		'RdYlBu': plt.cm.RdYlBu,'RdYlGn': plt.cm.RdYlGn,
+		'Spectral': plt.cm.Spectral,'coolwarm': plt.cm.coolwarm,
+		'bwr': plt.cm.bwr,'seismic': plt.cm.seismic,
+		'twilight': plt.cm.twilight,'twilight_shifted': plt.cm.twilight_shifted,
+		'hsv': plt.cm.hsv,'Pastel1': plt.cm.Pastel1,'Pastel2': plt.cm.Pastel2,
+		'Paired': plt.cm.Paired,'Accent': plt.cm.Accent,'Dark2': plt.cm.Dark2,
+		'Set1': plt.cm.Set1,'Set2': plt.cm.Set2,'Set3': plt.cm.Set3,
+		'tab10': plt.cm.tab10,'tab20': plt.cm.tab20,'tab20b': plt.cm.tab20b,
+		'tab20c': plt.cm.tab20c,'flag': plt.cm.flag,'prism': plt.cm.prism,
+		'ocean': plt.cm.ocean,'gist_earth': plt.cm.gist_earth,
+		'terrain': plt.cm.terrain,'gist_stern': plt.cm.gist_stern,
+		'gnuplot': plt.cm.gnuplot,'gnuplot2': plt.cm.gnuplot2,
+		'CMRmap': plt.cm.CMRmap,'cubehelix': plt.cm.cubehelix,'brg': plt.cm.brg,
+		'gist_rainbow': plt.cm.gist_rainbow,'rainbow': plt.cm.rainbow,
+		'jet': plt.cm.jet,'turbo': plt.cm.turbo,
+		'nipy_spectral': plt.cm.nipy_spectral,'gist_ncar': plt.cm.gist_ncar
+	}
+
+	try:
+		colormap = colormaps[argcolormap]
+	except KeyError:
+		raise ColormapError(argcolormap)
+	else:
+		return colormap
+
+
+def plot_scatter(dataset, colormap):
+	"""Draws a scatter plot graph using matplotlib. Used in scatter_dataset()"""
+	indices = range(len(dataset))
+	cmap = set_scatter_values(colormap)
+	plt.scatter(indices, dataset, c=indices, 
+		cmap=cmap, edgecolor='none', s=10)
+
+	plt.title("Dataset", fontsize=24)
+	plt.xlabel("Element Index", fontsize=14)
+	plt.ylabel("Dataset Value", fontsize=14)
+
+	# Set size of tick labels.
+	plt.tick_params(axis='both', which='major', labelsize=14)
+
+	# Set the range for each axis.
+	plt.axis([0, len(indices), 0, max(dataset)])
+
+	# Draw the graph.
+	plt.show()
+
+
+def reprstr_method(dataset, path):
+	args = namedtuple('DataVisualysis', 'dataset, path')
+	representation = str(args(dataset, path))
+	return representation
 
 
 def raise_method_error(method):

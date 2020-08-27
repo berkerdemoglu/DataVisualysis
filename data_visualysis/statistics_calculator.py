@@ -1,4 +1,5 @@
-import statistics_functions as sf
+from statistics_functions import find_mode, find_occurrences
+import numpy as np
 
 
 class StatisticsCalculator:
@@ -15,26 +16,42 @@ class StatisticsCalculator:
 
 	def mean(self):
 		"""Return the mean of the dataset."""
-		return sf.find_mean(self.dataset)
+		return np.mean(self.dataset)
 
 	def median(self):
 		"""Return the median of the dataset."""
-		return sf.find_median(self.dataset)
+		return np.median(self.dataset)
 
 	def mode(self, mode_occurrence="no"):
 		"""Return the mode of the dataset."""
-		return sf.find_mode(self.dataset, mode_occurrence)
+		return find_mode(self.dataset, mode_occurrence)
 
 	def std(self):
 		"""Return the standard deviation of the dataset."""
-		return sf.find_standard_deviation(self.dataset)
+		return np.std(self.dataset)
 
 	def var(self):
 		"""Return the variance of the dataset."""
-		return sf.find_variance(self.dataset)
+		return np.var(self.dataset)
 
 	def percentile(self, percentile):
-		return sf.find_percentile(self.dataset, percentile)
+		"""Return the percentile of the dataset."""
+		return np.percentile(self.dataset, percentile)
 
 	def occurrences(self):
-		return sf.find_occurrences(self.dataset)
+		"""Return the number of occurrences of each number in the dataset."""
+		return find_occurrences(self.dataset)
+
+
+######### TESTING #########
+
+if __name__ == "__main__":
+	sc = StatisticsCalculator([1, 2, 2, 4, 5, 2, 4])
+	a1 = sc.mean()
+	a2 = sc.median()
+	a3 = sc.mode()
+	a4 = sc.std()
+	a5 = sc.var()
+	a6 = sc.percentile(75)
+	a7 = sc.occurrences()
+	print(a1, a2, a3, a4, a5, a6, a7)
