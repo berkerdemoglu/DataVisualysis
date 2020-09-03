@@ -46,7 +46,7 @@ class MethodError(Exception):
 class ModeIncludeError(Exception):
 	"""Exception raised when mode_include is not 'include' or 'exclude'."""
 
-	def __init__(self, mode_include, message="mode_include must be 'true' or 'false': "):
+	def __init__(self, mode_include, message="mode_include must be True or False: "):
 		super().__init__(message + "mode_include cannot be '{}'".format(mode_include))
 
 class ColormapError(Exception):
@@ -54,3 +54,15 @@ class ColormapError(Exception):
 
 	def __init__(self, colormap, message="No such color map"):
 		super().__init__(message + " as '{}'".format(colormap))
+
+class SaveError(Exception):
+	"""Exception raised when save is not True or False."""
+
+	def __init__(self, message="save must be True or False"):
+		super().__init__(message)
+
+class DatasetNotListError(Exception):
+	"""Exception raised when save is not True or False."""
+
+	def __init__(self):
+		super().__init__("dataset must be an array")

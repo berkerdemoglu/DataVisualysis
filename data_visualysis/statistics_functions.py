@@ -1,5 +1,7 @@
 from statistics_exceptions import *
 from collections import Counter
+from numpy import mean
+
 
 def find_occurrences(number_list):
 	"""Finds how many times every number in a list occurs."""
@@ -7,7 +9,8 @@ def find_occurrences(number_list):
 	occurrences = counter.most_common()
 	return occurrences
 
-def find_mode(number_list, occurrence="no"):
+
+def find_mode(number_list, occurrence):
 	"""Finds the mode of a list of numbers."""
 	# Return counts by calling the find_occurrences function.
 	counts = find_occurrences(number_list)
@@ -29,10 +32,10 @@ def find_mode(number_list, occurrence="no"):
 		# and how many times it occurs or raise an error.
 
 		# If user has entered 'yes' for occurrence:
-		if occurrence == 'yes':
+		if occurrence:
 			return [mode, max(occurrences)]
 		# If user has entered 'no' for occurrence:
-		elif occurrence == 'no': # 
+		elif not occurrence: # 
 			return mode
 		# If user has entered an invalid value for occurrence:
 		else:
@@ -49,6 +52,6 @@ def find_mode(number_list, occurrence="no"):
 
 if __name__ == "__main__":
 	dataset = [1, 2, 5, 1, 3, 2, 4, 1]
-	o = find_occurrences(dataset)
-	m = find_mode(dataset)
-	print(m)
+	# o = find_occurrences(dataset)
+	# m = find_mode(dataset)
+	print(bd)
