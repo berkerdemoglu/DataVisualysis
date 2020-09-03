@@ -16,6 +16,10 @@
 >- Revise custom exceptions (e.g. ntype cannot be <inputvalue>).
 >- Write the compare_datasets() function in data_visualysis.py.
 >- Revise save_dataset() in data_visualysis_functions.py. (f_obj.write() -> json.dump etc.)
+>- Add json_files/graph_count.json.
+>-
+>-
+>-
 
 
 ### Long Term Plan for the Project:
@@ -110,18 +114,17 @@
 >- Call load_api_key in constructor method.
 
 
-### Plan for August 29, 2020:
->- Study data visualization from PCCB.
->- Finish writing the plot_scatter function in dvf.
-
-
-### Plan for August 30, 2020:
+### Plan for September 4, 2020:
 >- Study data visualization from PCCB.
 
 
-### Plan for August 31, 2020:
+### Plan for September 5, 2020:
 >- Study data visualization from PCCB.
 
 
-### Plan for September 1, 2020:
+### Plan for September 6, 2020:
+>- Study data visualization from PCCB.
+
+
+### Plan for September 7, 2020:
 >- Study data visualization from PCCB.
