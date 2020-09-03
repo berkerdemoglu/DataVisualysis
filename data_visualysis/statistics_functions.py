@@ -46,16 +46,6 @@ def find_mode(number_list, occurrence):
 		return "The list has no mode."
 
 
-def find_berkdeviation(number_list):
-	distances = []
-	list_mean = mean(number_list)
-	for num in number_list:
-		distances.append(abs(list_mean - num))
-
-	berkdeviation = mean(distances)
-	print(berkdeviation)
-
-
 #########################################
 ################ TESTING ################
 #########################################
@@ -64,9 +54,4 @@ if __name__ == "__main__":
 	dataset = [1, 2, 5, 1, 3, 2, 4, 1]
 	# o = find_occurrences(dataset)
 	# m = find_mode(dataset)
-	bd = find_berkdeviation([
-	414, 620, 2488, 1704, 1025, 3217, 1907, 2104, 1292, 2844, 3286, 5349, 
-	3166, 2612, 3132, 3667, 3014, 3794, 6282, 10232, 7674, 5970, 8147, 
-	10180, 7795, 3883, 10000, 6486
-])
 	print(bd)
