@@ -1,5 +1,7 @@
 from statistics_exceptions import *
 from collections import Counter
+from numpy import mean
+
 
 def find_occurrences(number_list):
 	"""Finds how many times every number in a list occurs."""
@@ -7,7 +9,8 @@ def find_occurrences(number_list):
 	occurrences = counter.most_common()
 	return occurrences
 
-def find_mode(number_list, occurrence="no"):
+
+def find_mode(number_list, occurrence):
 	"""Finds the mode of a list of numbers."""
 	# Return counts by calling the find_occurrences function.
 	counts = find_occurrences(number_list)
@@ -29,10 +32,10 @@ def find_mode(number_list, occurrence="no"):
 		# and how many times it occurs or raise an error.
 
 		# If user has entered 'yes' for occurrence:
-		if occurrence == 'yes':
+		if occurrence:
 			return [mode, max(occurrences)]
 		# If user has entered 'no' for occurrence:
-		elif occurrence == 'no': # 
+		elif not occurrence: # 
 			return mode
 		# If user has entered an invalid value for occurrence:
 		else:
@@ -43,12 +46,27 @@ def find_mode(number_list, occurrence="no"):
 		return "The list has no mode."
 
 
+def find_berkdeviation(number_list):
+	distances = []
+	list_mean = mean(number_list)
+	for num in number_list:
+		distances.append(abs(list_mean - num))
+
+	berkdeviation = mean(distances)
+	print(berkdeviation)
+
+
 #########################################
 ################ TESTING ################
 #########################################
 
 if __name__ == "__main__":
 	dataset = [1, 2, 5, 1, 3, 2, 4, 1]
-	o = find_occurrences(dataset)
-	m = find_mode(dataset)
-	print(m)
+	# o = find_occurrences(dataset)
+	# m = find_mode(dataset)
+	bd = find_berkdeviation([
+	414, 620, 2488, 1704, 1025, 3217, 1907, 2104, 1292, 2844, 3286, 5349, 
+	3166, 2612, 3132, 3667, 3014, 3794, 6282, 10232, 7674, 5970, 8147, 
+	10180, 7795, 3883, 10000, 6486
+])
+	print(bd)

@@ -71,8 +71,8 @@ def init_dataset(path, dataset):
 
 	# If only a path was provided:
 	elif not dataset and path:
-		with open(path, 'r') as file:
-			dataset = json.load(file)
+		with open(path, 'r') as f_obj:
+			dataset = json.load(f_obj)
 		print("The dataset you provided in the file will be used.\n")
 
 	# If only a dataset was provided:
@@ -267,6 +267,26 @@ def save_dataset(path, dataset):
 		print("Saved the file in {}".format(path) + ".")
 
 
+def load_json_dataset(path):
+	"""Used in dataset_from_path()."""
+	with open(path, 'r') as f_obj:
+		dataset = json.load(f_obj)
+
+	if not isinstance(dataset, list):
+		raise StoredDatasetError
+
+	return dataset
+
+
+def store_json_dataset(dataset, path):
+	"""Used in store_dataset()."""
+	if not isinstance(dataset, list):
+		raise DatasetNotListError
+
+	with open(path, 'w') as f_obj:
+		json.dump(dataset, f_obj)
+
+
 def print_dataset(dataset):
 	"""Used in show_dataset()"""
 	# If the dataset has more than 30 elements, ask the user
@@ -320,9 +340,22 @@ def print_some_results(dataset, mode_var):
 		print("Mode:", mode_var)
 
 
-def set_scatter_values(argcolormap):
-	"""Used in plot_scatter(). Sets values like colormap, fontsize etc."""
-	colormaps = {
+def print_statistics(sum_, max_, min_, mean, q1, median, q3, std, variance):
+	"""Print given statistics."""
+	print("Maximum Value in the Dataset:", max_)
+	print("Minimum Value in the Dataset:", min_)
+	print("Sum of Values in the Dataset:", sum_)
+	print("Mean:", mean)
+	print("1st Quartile:", q1)
+	print("Median (2nd Quartile):", median)
+	print("3rd Quartile:", q3)
+	print("Standard Deviation:", std)
+	print("Variance:", variance)
+
+
+def return_cmaps():
+	"""Returns a dictionary of matplotlib colormaps."""
+	cmaps = {
 		'viridis': plt.cm.viridis,'plasma': plt.cm.plasma,
 		'inferno': plt.cm.inferno,'magma': plt.cm.magma,
 		'cividis': plt.cm.cividis,'Greys': plt.cm.Greys,
@@ -357,6 +390,18 @@ def set_scatter_values(argcolormap):
 		'jet': plt.cm.jet,'turbo': plt.cm.turbo,
 		'nipy_spectral': plt.cm.nipy_spectral,'gist_ncar': plt.cm.gist_ncar
 	}
+	return cmaps
+
+
+def print_colormaps():
+	colormaps = return_cmaps()
+	print("Available colormaps are:")
+	print(tuple(colormaps.keys()))
+
+
+def set_colormap(argcolormap):
+	"""Used in plot_scatter(). Sets values like colormap, fontsize etc."""
+	colormaps = return_cmaps()
 
 	try:
 		colormap = colormaps[argcolormap]
@@ -366,10 +411,35 @@ def set_scatter_values(argcolormap):
 		return colormap
 
 
-def plot_scatter(dataset, colormap):
+def save_graph(path, bbox_inches):
+	"""Called in graph functions."""
+	# If a path for the save was not provided, save the current
+	# dataset with the suffix in json_files/file_count.json.
+	if not path:
+		# Read the count in file_count.json
+		with open('json_files/file_count.json', 'r') as f_obj:
+			current_count = f_obj.read()
+			save_file = 'saved_graphs/graph_' + current_count + '.png'
+
+		# Increment the file_count by 1.
+		with open('json_files/file_count.json', 'w') as f_obj:
+			f_obj.write(str(int(current_count) + 1))
+
+		# Save the graph.
+		plt.savefig(save_file, bbox_inches=bbox_inches)
+		print("Saved the graph in {}".format(save_file) + ".")
+
+	# Else, save the file in the provided directory.
+	else:
+		# Save the dataset in the provided path.
+		plt.savefig(path, bbox_inches)
+		print("Saved the graph in {}".format(path) + ".")
+
+
+def plot_scatter(dataset, colormap, save, path, bbox_inches):
 	"""Draws a scatter plot graph using matplotlib. Used in scatter_dataset()"""
+	cmap = set_colormap(colormap)
 	indices = range(len(dataset))
-	cmap = set_scatter_values(colormap)
 	plt.scatter(indices, dataset, c=indices, 
 		cmap=cmap, edgecolor='none', s=10)
 
@@ -382,6 +452,40 @@ def plot_scatter(dataset, colormap):
 
 	# Set the range for each axis.
 	plt.axis([0, len(indices), 0, max(dataset)])
+
+	# Save the graph or not.
+	if save:
+		save_graph(path, bbox_inches)
+	elif not save:
+		pass
+	else:
+		raise SaveError
+
+	# Draw the graph.
+	plt.show()
+	
+
+
+def draw_line_graph(dataset, save, path, bbox_inches):
+	"""Draws a line graph, called in line_graph()."""
+	x_values = list(range(1, len(dataset) + 1))
+	plt.plot(x_values, dataset)
+
+	# Set chart title and label axes.
+	plt.title("Dataset", fontsize=24)
+	plt.xlabel("Element Index", fontsize=14)
+	plt.ylabel("Dataset Value", fontsize=14)
+
+	# Set size of tick labels.
+	plt.tick_params(axis='both', labelsize=14)
+
+	# Save the graph or not.
+	if save:
+		save_graph(path, bbox_inches)
+	elif not save:
+		pass
+	else:
+		raise SaveError
 
 	# Draw the graph.
 	plt.show()

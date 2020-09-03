@@ -4,7 +4,7 @@ import data_visualysis_functions as dvf
 """If this file is being imported, print a message to the terminal, 
 specifying the version of DataVisualysis."""
 if __name__ != '__main__':
-	print("© DataVisualysis 0.2.0\n")
+	print("© DataVisualysis 0.2.0.1\n")
 
 
 class DataVisualysis:
@@ -125,7 +125,7 @@ class DataVisualysis:
 		"""
 		dvf.print_dataset(self.dataset)
 
-	def show_results(self, mode_occurrence="no"):
+	def show_results(self, mode_occurrence=False):
 		"""
 		Prints every data analysis result.
 
@@ -140,27 +140,80 @@ class DataVisualysis:
 		print("Standard Deviation:", self.calculate.std())
 		print("Variance:", self.calculate.var())
 
-	def return_occurrences(self, mode_include='false'):
+	def return_occurrences(self, mode_include=False):
 		"""
 		Prints how many times each value appears in the list.
 
 		@param mode_include: Takes 'true' or 'false' values.
 		"""
-		if mode_include == 'true':
-			mode_var = self.calculate.mode('yes')
+		if mode_include:
+			mode_var = self.calculate.mode(True)
 			if mode_var == 'The list has no mode.':
 				print(mode_var)
 			else:
 				print("Mode:", str(mode_var[0]) + ", Occurrences:", mode_var[1])
-
-		elif mode_include == 'false':
+		elif not mode_include:
 			pass
 		else:
 			dvf.raise_mode_include_error(mode_include)
+
 		return self.calculate.occurrences()
 
+	def compare_datasets(self, dataset1, dataset2=None):
+		"""
+		Compares two given datasets.
 
-	# STATIC AND CLASS METHODS
+		@param dataset1: The first dataset
+		@param dataset2: The second dataset
+		@param mode_occurrence: Include how many times the mode of the dataset occurs or not
+		"""
+		# Create a copy of the original dataset.
+		original_dataset = self.dataset[:]
+
+		# If a second dataset was not provided, use self.dataset instead.
+		if not dataset2:
+			dataset2 = self.dataset
+
+		# Print the results for dataset1.
+		self.calculate.dataset = dataset1
+		mode_var = self.calculate.mode(True)
+		mean = self.calculate.mean()
+		q1 = self.calculate.percentile(25)
+		median = self.calculate.median()
+		q3 = self.calculate.percentile(75)
+		std = self.calculate.std()
+		variance = self.calculate.var()
+		sum_1, max_1, min_1 = sum(dataset1), max(dataset1), min(dataset1)
+		print("Showing results for the first dataset:\n")
+		dvf.print_statistics(sum_1, max_1, min_1, mean, q1, median, q3, std, variance)
+
+		# Print the results for dataset2.
+		self.calculate.dataset = dataset2
+		mode_var_2 = self.calculate.mode(True)
+		mean_2 = self.calculate.mean()
+		q1_2 = self.calculate.percentile(25)
+		median_2 = self.calculate.median()
+		q3_2 = self.calculate.percentile(75)
+		std_2 = self.calculate.std()
+		variance_2 = self.calculate.var()
+		sum_2, max_2, min_2 = sum(dataset2), max(dataset2), min(dataset2)
+		print("\nShowing results for the second dataset:\n")
+		dvf.print_statistics(sum_2, max_2, min_2, mean_2, q1_2, median_2, q3_2, std_2, variance_2)
+
+		# Print the differences of statistics of the two datasets.
+		print("\nDifferences of statistics:\n")
+		print("Difference of Maximum Values:", abs(max_1 - max_2))
+		print("Difference of Minimum Values:", abs(min_1 - min_2))
+		print("Difference of Sum of Values:", abs(sum_1 - sum_2))
+		print("Difference of Means:", abs(mean - mean_2))
+		print("Difference of Medians:", abs(median - median_2))
+		print("Difference of Standard Deviations:", abs(std - std_2))
+		print("Difference of Variances:", abs(variance - variance_2))
+
+		# Set self.dataset back to its original.
+		self.dataset = original_dataset
+
+	# STATIC METHODS
 	@staticmethod
 	def set_file_count(count=0, path="json_files/file_count.json"):
 		"""
@@ -195,24 +248,41 @@ class DataVisualysis:
 		"""
 		Returns the stored API key.
 
-		@param path: The path of the file that contains the API key.
+		@param path: The path of the file containing the API key.
 		"""
 		return dvf.return_api_key(path)
 
 	@staticmethod
-	def compare_datasets(dataset1, dataset2):
-		"""
-		Compares two given datasets.
+	def show_colormaps():
+		"""Prints every available colormap."""
+		dvf.print_colormaps()
 
-		@param dataset1: The first dataset
-		@param dataset2: The second dataset
+	@staticmethod
+	def dataset_from_path(path):
 		"""
-		# NOT IMPLEMENTED YET!
-		pass
+		Reads a .json file containing an array of numbers.
 
+		@param path: The path of the .json file
+		"""
+		return dvf.load_json_dataset(path)
+
+	@staticmethod
+	def store_dataset_in_path(dataset, path):
+		"""
+		Stores a given dataset in a .json file.
+
+		@param path: The path of the .json file
+		"""
+		dvf.store_json_dataset(dataset, path)
 
 	# GRAPH METHODS
-	def scatter_dataset(self, colormap):
+	def scatter_dataset(self, colormap='viridis', save=False, 
+		path=None, bbox_inches='tight'):
 		"""Scatters the values in the dataset and 
 		plots the graph using matplotlib."""
-		dvf.plot_scatter(self.dataset, colormap)
+		dvf.plot_scatter(self.dataset, colormap, save, path, bbox_inches)
+
+	def line_graph(self, save=False, path=None, bbox_inches='tight'):
+		"""Draws a line graph connecting the values 
+		in the dataset using matplotlib."""
+		dvf.draw_line_graph(self.dataset, save, path, bbox_inches)

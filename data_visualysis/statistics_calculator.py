@@ -22,7 +22,7 @@ class StatisticsCalculator:
 		"""Return the median of the dataset."""
 		return np.median(self.dataset)
 
-	def mode(self, mode_occurrence="no"):
+	def mode(self, mode_occurrence=False):
 		"""Return the mode of the dataset."""
 		return find_mode(self.dataset, mode_occurrence)
 
