@@ -4,7 +4,7 @@ import data_visualysis_functions as dvf
 """If this file is being imported, print a message to the terminal, 
 specifying the version of DataVisualysis."""
 if __name__ != '__main__':
-	print("© DataVisualysis 0.2.0.1\n")
+	print("© DataVisualysis 0.2.0-alpha.1\n")
 
 
 class DataVisualysis:
