@@ -1,11 +1,12 @@
-import requests
 import json
 import random
-import matplotlib.pyplot as plt
-import numpy as np
 from math import floor, fmod
-from data_visualysis_exceptions import *
 from collections import namedtuple
+
+import requests
+import matplotlib.pyplot as plt
+
+from data_visualysis_exceptions import *
 
 
 def return_api_key(path):
@@ -146,7 +147,7 @@ def datasetfromrandom_org(numbers, mini, maxi, replacement, api_key):
 	# If invalid inputs have been provided:
 	if 'error' in response.text:
 		# Store the error response in a .json file.
-		with open('json_files/request_random.json', 'w') as f_obj:
+		with open('json_files/randomorg_request.json', 'w') as f_obj:
 			json.dump(response.text, f_obj)
 
 		# If the API key does not have enough bits for the operation:
@@ -161,7 +162,7 @@ def datasetfromrandom_org(numbers, mini, maxi, replacement, api_key):
 		raise RandomOrgError
 
 	# Store the response in a .json file.
-	with open('json_files/request_random.json', 'w') as f_obj:
+	with open('json_files/randomorg_request.json', 'w') as f_obj:
 		json.dump(response.text, f_obj)
 
 	# Store the generated numbers in a .json file list 
@@ -325,9 +326,9 @@ def print_some_results(dataset, mode_var):
 	else:
 		print("The dataset was omitted because it was too large.")
 	# Print other analytics.
-	print("Maximum Value in the Dataset:", max(dataset))
-	print("Minimum Value in the Dataset:", min(dataset))
-	print("Sum of Values in the Dataset:", sum(dataset))
+	print("Maximum Value in the Dataset:", f"{max(dataset):,}")
+	print("Minimum Value in the Dataset:", f"{min(dataset):,}")
+	print("Sum of Values in the Dataset:", f"{sum(dataset):,}")
 
 	# Print the mode of the dataset.
 	if isinstance(mode_var, list):
@@ -436,14 +437,18 @@ def save_graph(path, bbox_inches):
 		print("Saved the graph in {}".format(path) + ".")
 
 
-def plot_scatter(dataset, colormap, save, path, bbox_inches):
+def plot_scatter(dataset, dataset2, colormap, title, save, path, bbox_inches):
 	"""Draws a scatter plot graph using matplotlib. Used in scatter_dataset()"""
+	if not dataset2:
+		indices = list(range(1, len(dataset) + 1))
+	else:
+		indices = dataset2
+
 	cmap = set_colormap(colormap)
-	indices = range(len(dataset))
 	plt.scatter(indices, dataset, c=indices, 
 		cmap=cmap, edgecolor='none', s=10)
 
-	plt.title("Dataset", fontsize=24)
+	plt.title(title, fontsize=24)
 	plt.xlabel("Element Index", fontsize=14)
 	plt.ylabel("Dataset Value", fontsize=14)
 
@@ -451,7 +456,7 @@ def plot_scatter(dataset, colormap, save, path, bbox_inches):
 	plt.tick_params(axis='both', which='major', labelsize=14)
 
 	# Set the range for each axis.
-	plt.axis([0, len(indices), 0, max(dataset)])
+	plt.axis([1, len(indices), 0, max(dataset)])
 
 	# Save the graph or not.
 	if save:
@@ -466,13 +471,17 @@ def plot_scatter(dataset, colormap, save, path, bbox_inches):
 	
 
 
-def draw_line_graph(dataset, save, path, bbox_inches):
+def draw_line_graph(dataset, dataset2, title, save, path, bbox_inches):
 	"""Draws a line graph, called in line_graph()."""
-	x_values = list(range(1, len(dataset) + 1))
+	if not dataset2:
+		x_values = list(range(1, len(dataset) + 1))
+	else:
+		x_values = dataset2
+
 	plt.plot(x_values, dataset)
 
 	# Set chart title and label axes.
-	plt.title("Dataset", fontsize=24)
+	plt.title(title, fontsize=24)
 	plt.xlabel("Element Index", fontsize=14)
 	plt.ylabel("Dataset Value", fontsize=14)
 
