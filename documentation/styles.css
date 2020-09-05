@@ -1,0 +1,70 @@
+/* 
+Logo Colors:
+
+#9095D9 - Light Purple
+#FEFEFF - White
+#3F48CC - Dark Purple
+
+Other Colors:
+
+#323031 - Jet (Black)
+C1666B
+B2945B
+*/
+
+@font-face {
+	font-family: Poppins;
+	src: url(fonts/Poppins-Regular.ttf);
+}
+
+/* Set default font to Poppins. */
+* {
+	font-family: Poppins;
+}
+
+body {
+	background-color: #72A276;
+}
+
+hr {
+	height: 2px; 
+	border-width: 0; 
+	color: #323031; 
+	background-color: #323031;
+}
+
+#firstheader {
+	user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+}
+
+/* Social Media Div Styles */
+.socialdiv {
+	user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	margin: auto;
+	margin-left: 0;
+	width: 50%;
+	overflow: hidden;
+	position: relative;
+}
+
+.link {
+	text-align: center;
+	color: #323031;
+	text-decoration: none;
+	display: block;
+	background-color: #E29578;
+	float: left;
+	border: 0.2vh solid #323031;
+	padding: 0.8vh;
+	width: 30vh;
+	transition: color 0.25s ease-in;
+	font-size: 2.5vh;
+}
+
+.link:hover {
+	color: #A8DADC;
+} 

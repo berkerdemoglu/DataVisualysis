@@ -1,14 +1,10 @@
-from statistics_functions import find_mode, find_occurrences
 import numpy as np
+
+from statistics_functions import find_mode, find_occurrences
 
 
 class StatisticsCalculator:
-	"""
-	A class that calculates values such as median,
-	mode etc. Used for data analysis. Also contains
-	some functions for data_modeler.py.
-	"""
-
+	"""A statistics calculator class for DataVisualysis."""
 
 	def __init__(self, dataset):
 		"""Initialize a calculator object."""

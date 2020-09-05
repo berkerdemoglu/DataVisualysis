@@ -1,6 +1,5 @@
 from statistics_exceptions import *
 from collections import Counter
-from numpy import mean
 
 
 def find_occurrences(number_list):
