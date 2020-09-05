@@ -4,10 +4,10 @@ import data_visualysis_functions as dvf
 """If this file is being imported, print a message to the terminal, 
 specifying the version of DataVisualysis."""
 if __name__ != '__main__':
-	print("© DataVisualysis 0.2.0-alpha.1\n")
+	print("© DataVisualysis 0.2.1\n")
 
 
-class DataVisualysis:
+class DataModeler:
 	"""A class for data visualization and analysis.
 	The main class of DataVisualysis."""
 
@@ -276,13 +276,14 @@ class DataVisualysis:
 		dvf.store_json_dataset(dataset, path)
 
 	# GRAPH METHODS
-	def scatter_dataset(self, colormap='viridis', save=False, 
-		path=None, bbox_inches='tight'):
+	def scatter_dataset(self, dataset2=None, colormap='viridis', 
+		title="Dataset", save=False, path=None, bbox_inches='tight'):
 		"""Scatters the values in the dataset and 
 		plots the graph using matplotlib."""
-		dvf.plot_scatter(self.dataset, colormap, save, path, bbox_inches)
+		dvf.plot_scatter(self.dataset, dataset2, colormap, title, save, path, bbox_inches)
 
-	def line_graph(self, save=False, path=None, bbox_inches='tight'):
+	def line_graph(self, dataset2=None, title="Dataset", save=False, 
+		path=None, bbox_inches='tight'):
 		"""Draws a line graph connecting the values 
 		in the dataset using matplotlib."""
-		dvf.draw_line_graph(self.dataset, save, path, bbox_inches)
+		dvf.draw_line_graph(self.dataset, dataset2, title, save, path, bbox_inches)
