@@ -9,7 +9,6 @@ The GUI is still lacking, but it will be implemented using Tkinter.
 
 # Required Python Modules:
 - matplotlib
-- Tkinter
 - requests
 - json (built-in module)
 - random (built-in module)
