@@ -1,4 +1,4 @@
-/* 
+/*
 Logo Colors:
 
 #9095D9 - Light Purple
@@ -20,11 +20,10 @@ B2945B
 /* Set default font to Poppins. */
 * {
 	font-family: Poppins;
+	color: #323031;
 }
 
-body {
-	background-color: #72A276;
-}
+body {background-color: #72A276;}
 
 hr {
 	height: 2px; 
@@ -65,6 +64,4 @@ hr {
 	font-size: 2.5vh;
 }
 
-.link:hover {
-	color: #A8DADC;
-} 
+.link:hover {color: #A8DADC;}
