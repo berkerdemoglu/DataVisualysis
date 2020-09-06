@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>DataVisualysis Documentation | Functions</title>
+	<meta content="text/html" charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+	<meta name="description" content="DataVisualysis Official Website" />
+	<meta name="keywords" content="DataVisualysis, Documentation, Official Website, DataVisualysis Documentation, Docs, DataVisualysis Docs, Official Docs, DataVisualysis Docs" />
+	<meta name="author" content="Berk Erdemoglu" />
+
+	<script type="text/javascript" src="scripts.js"></script>
+	<link rel="stylesheet" href="styles.css" />
+	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<style type="text/css">
+		@font-face {
+			font-family: "Source Code Pro";
+			src: url(fonts/SourceCodePro-Regular.ttf);
+		}
+
+		* {font-family: inherit;}
+
+		.link {font-family: Poppins;}
+
+		#statfuncs a {
+			text-decoration: none;
+			color: #A8DADC;
+			font-style: italic;
+		}
+
+		#dvheader {
+			font-size: 4vh;
+			font-family: monospace;
+			color: #FEFEFF;
+		}
+
+		#dvheader b {
+			color: #3F48CC;
+			font-size: 4.5vh;
+		}
+
+		.examplelink {
+			text-decoration: none;
+			color: #3F48CC;
+		}
+
+		.functionslist li {
+			list-style-type: none;
+		}
+
+		.functionslist li:before {
+			content: '⚙️';
+			margin-left: -20px; margin-right: 10px;
+		}
+
+		.function {
+			font-size: 3vh;
+			font-family: "Menlo", "Consolas", "Courier New", monospace;
+		}
+
+		.explain {
+			font-family: "Source Code Pro";
+			font-size: 2.5vh;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="firstheader">DataVisualysis Official Documentation</h1>
+	<hr/>
+	<br/>
+	<div>
+		<a class="link" href="index.html">Home Page</a>
+		<a class="link" href="functions.html">Functions</a>
+		<a class="link" href="examples.html">Code Examples</a>
+		<a class="link" href="#">FAQ</a>
+	</div>
+	<br/><br/><br/>
+	<hr/>
+
+	<div id="functionsdiv">
+		<p id="dvheader">
+			<b>Data</b><b>Modeler</b><span> &mdash; </span>The main class for analyzing and visualizing data
+		</p>
+		<p>All following functions are called as <i>object_name</i>.<i>function_name(arguments)</i>.</p>
+		<ul class="functionslist">
+			<li>
+				<p class="function">__init__(<i>path=None, dataset=None</i>)</p>
+				<p class="explain">
+					If <i>path</i> and <i>dataset</i> are both provided, then the array in the .json file will be used as the dataset. If neither are provided, then the default path stored in <i>json_files/default_directory.json</i> will be used as the <i>path</i> argument.<br/>
+					<br/>&#x40;param path: The path to the .json file containing an array of numbers.
+					<br/>&#x40;param dataset: A list of numbers to be used as the dataset.<br/>
+				</p>
+				<p class="explain">
+					A <i>StatisticsCalculator</i> object is instantiated in the __init__ method. It can be used to calculate various statistics for a given dataset.
+				</p>
+				<a class="examplelink" href="examples.html#initexample">Click to see an example of __init__()</a>
+			</li>
+			<li>
+				<p class="function">generate_random_dataset(<i>api_key, numbers=100, mini=0, maxi=100, replacement="true", method="store"</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#grdexample"></a>
+			</li>
+			<li>
+				<p class="function">generate_offline_random_dataset(<i>mini=0, maxi=100, numbers=100, ntype="int", method="store"</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">use_dataset(<i>path='json_files/numbers_data.json'</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">save_current_dataset(<i>path=None</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">show_dataset()</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">show_results(<i>mode_occurrence=False</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">return_occurrences(<i>mode_include=False</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">compare_datasets(<i>dataset1, dataset2=None</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">set_file_count(<i>count=0, path="json_files/file_count.json"</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">change_default_directory(<i>path='json_files/numbers_data.json'</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">store_api_key(<i>api_key, path="json_files/api_key.json"</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">load_api_key(<i>path="json_files/api_key.json"</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">dataset_from_path(<i>path</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">store_dataset_in_path(<i>dataset, path</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+		</ul>
+		<hr/>
+
+		<h2>Graph Functions</h2>
+		<p>Functions used to draw graphs.</p>
+		<ul class="functionslist">
+			<li>
+				<p class="function">scatter_graph(<i>x_values=None, colormap='viridis', title="Dataset", save=False, path=None, bbox_inches='tight', hover=False</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">line_graph(<i>x_values=None, title="Dataset", save=False, path=None, bbox_inches='tight'</i>)</p>
+				<p class="explain"></p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+		</ul>
+		<hr style="height: 0.4vh" />
+
+		<h2>Statistical Functions</h2>
+		<p id="statfuncs">All statistical functions are printed to the terminal in <a href="#show_results">show_results()</a> and <a href="#compare_datasets">compare_datasets()</a>.<br/>A DataModeler object instantiates a StatisticsCalculator object in its constructor method. Keep in mind that one can instantiate a StatisticsCalculator object by providing a dataset such as 'sc = StatisticsCalculator(dataset)'. In that case, call the following functions without 'calculate.'.</p>
+		<ul class="functionslist">
+			<li>
+				<p class="function">calculate.mean()</p>
+				<p class="explain">Calculates and returns the arithmetic mean of the dataset.</p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">calculate.median()</p>
+				<p class="explain">Calculates and returns the median of the dataset.</p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">calculate.mode(<i>mode_occurrence=False</i>)</p>
+				<p class="explain">
+				Calculates and returns the mode of the dataset.<br/><br/>
+				&#x40;param mode_occurrence: If there is no mode, returns the string, "The list the has no mode", regardless of mode_occurrence's value. If mode_occurrence is False, it will return only the mode. If it is True, it will return a list with 2 elements; the first being the mode and the second being how many times the mode occurs.
+				</p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">calculate.std()</p>
+				<p class="explain">Calculates and returns the standard deviation of the dataset.</p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">calculate.var()</p>
+				<p class="explain">Calculates and returns the variance of the dataset.</p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">calculate.percentile(<i>percentile</i>)</p>
+				<p class="explain">Calculates and returns '<i>percentile</i>'th percentile of the dataset.</p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+			<li>
+				<p class="function">calculate.occurrences()</p>
+				<p class="explain">Returns a list containing how many times each number in the dataset occurs. The list contains tuples with the first element of the tuple being the number itself and second element being its number of occurrences.</p>
+				<a class="examplelink" href="examples.html#"></a>
+			</li>
+		</ul>
+	</div>
+	<br/><hr/><br/><br/>
+</body>
+</html>

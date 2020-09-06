@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>DataVisualysis Documentation | Examples</title>
+	<meta content="text/html" charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+	<meta name="description" content="DataVisualysis Official Website" />
+	<meta name="keywords" content="DataVisualysis, Documentation, Official Website, DataVisualysis Documentation, Docs, DataVisualysis Docs, Official Docs, DataVisualysis Docs" />
+	<meta name="author" content="Berk Erdemoglu" />
+
+	<script type="text/javascript" src="scripts.js"></script>
+	<link rel="stylesheet" href="styles.css" />
+	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<style type="text/css">
+		* {
+			font-family: inherit;
+		}
+
+		.link {
+			font-family: Poppins;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		#firstheader {
+			font-family: Poppins;
+		}
+
+		#exampleslist {
+			font-size: 2.5vh;
+		}
+
+		#exampleslist li a {
+			padding: 0.5vh 0.5vh;
+			text-decoration: none;
+		}
+
+		.example pre {
+			tab-size: 4;
+			-moz-tab-size: 4;
+			font-family: "Menlo", "Consolas", "Courier New", monospace;
+			font-size: 18px;
+			background-color: #f6f6f6;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="firstheader">DataVisualysis Official Documentation</h1>
+	<hr/>
+	<br/>
+	<div>
+		<a class="link" href="index.html">Home Page</a>
+		<a class="link" href="functions.html">Functions</a>
+		<a class="link" href="examples.html">Code Examples</a>
+		<a class="link" href="#">FAQ</a>
+	</div>
+	<br/><br/><br/>
+	<hr/>
+	<ol id="exampleslist">
+		<li><a href="#example1">Example #1</a></li>
+		<li><a href="#example2">Example #2</a></li>
+		<li><a href="#example3">Example #3</a></li>
+	</ol>
+	<div class="example" id="#example1">
+		<h2>Example #1</h2>
+		<p>Here's an example where COVID-19 in Turkey is analyzed using both statistics and graphs in <i>DataVisualysis</i>.</p>
+		<pre class="prettyprint lang-python">
+import json
+
+from data_visualysis import DataModeler
+
+# Load the file containing COVID-19 information for Turkey.
+filename = 'covid_turkey.json'
+with open(filename, 'r') as f_obj:
+	contents = json.load(f_obj)
+
+# Create a tests/cases/deaths/healed list.
+result_lists = [list() for i in range(4)]
+for daily_result in contents.values():
+	result_lists[0].append(daily_result['Tests'])
+	result_lists[1].append(daily_result['Cases'])
+	result_lists[2].append(daily_result['Deaths'])
+	result_lists[3].append(daily_result['Healed'])
+
+# Initialize a DataModeler object.
+data_modeler = DataModeler(dataset=[1])
+
+title_num = 0
+for result_list in result_lists:
+	title_num += 1
+	if title_num == 1:
+		title = "Tests"
+	elif title_num == 2:
+		title = "Cases"
+	elif title_num == 3:
+		title = "Deaths"
+	else:
+		title = "Healed"
+
+	data_modeler.dataset = result_list
+	data_modeler.calculate.dataset = result_list
+
+	# Show statistics and draw a line graph.
+	print("\nNow analyzing", title, "results:\n")
+	data_modeler.show_results(mode_occurrence=True)
+	data_modeler.line_graph(title=title)
+
+# Create a tests per case list.
+tc_dataset = []
+for test, case in zip(result_lists[0], result_lists[1]):
+	# Add tests per case result per day to the list.
+	tc_dataset.append(test / case)
+
+data_modeler.dataset = tc_dataset
+data_modeler.calculate.dataset = tc_dataset
+data_modeler.show_results(mode_occurrence=True)
+data_modeler.line_graph(title="Test/Case Per Day")
+		</pre>
+	</div>
+	<script type="text/javascript">
+		
+	</script>
+	<noscript>Sorry, your browser does not support scripts or you have disabled them.</noscript>
+	<br/><br/><br/><hr/><br/><br/>
+</body>
+</html>

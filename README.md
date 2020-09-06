@@ -8,6 +8,7 @@ The program to run is 'dv_main.py'. A DataModeler object is generated in 'dv_mai
 - matplotlib
 - requests
 - numpy
+- mplcursors
 
 ## Thank you...
 - Altar Dikmen for designing the logo

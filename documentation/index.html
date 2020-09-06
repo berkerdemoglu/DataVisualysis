@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<title>DataVisualysis Documentation</title>
+	<title>DataVisualysis Documentation | Home Page</title>
 	<meta content="text/html" charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -12,9 +12,7 @@
 
 	<script type="text/javascript" src="scripts.js"></script>
 	<link rel="stylesheet" href="styles.css" />
-	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 	<script src="https://kit.fontawesome.com/375042b2bf.js" crossorigin="anonymous"></script>
-
 	<style type="text/css">
 		.dwty a {
 			color: #114B5F;
@@ -28,6 +26,28 @@
 		.dwty p {
 			font-size: 20px;
 		}
+
+		#imgcontainer {
+			margin: auto;
+		}
+
+		#imgcontainer img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 50%;
+		}
+
+		#reqmodules code {
+			font-family: "Menlo", "Consolas", "Courier New", monospace;
+			color: #323031;
+			background-color: #e4e6e8;
+			padding: 1.5vh;
+			font-size: 120%;
+			display: inline-block;
+			width: 75%;
+			border: 0.2vh solid #323031;
+		}
 	</style>
 </head>
 <body>
@@ -35,30 +55,45 @@
 	<hr/>
 
 	<div class="socialdiv">
-		<a class="link" target="_blank" href="https://github.com/berkerdemoglu"><span class="fab fa-github"></span> GitHub</a>
+		<a class="link" target="_blank" href="https://github.com/berkerdemoglu/DataVisualysis"><span class="fab fa-github"></span> GitHub</a>
 		<a class="link" target="_blank" href="https://www.instagram.com/b.erdemogluu/"><span class="fab fa-instagram"></span> Instagram</a>
 	</div>
 	<br/>
 	<div>
 		<a class="link" href="index.html">Home Page</a>
-		<a class="link" href="#">Methods</a>
+		<a class="link" href="functions.html">Functions</a>
 		<a class="link" href="examples.html">Code Examples</a>
 		<a class="link" href="#">FAQ</a>
 	</div>
 	<br/><br/><hr style="height: 1.5px;"/>
-	<div class="dwty">
+	<div id="reqmodules">
+		<h2>Required Modules</h2>
+		<p>DataVisualysis uses some external (non-built-in) modules to perform some tasks:</p>
+		<ul>
+			<li>matplotlib</li>
+			<li>numpy</li>
+			<li>requests</li>
+		</ul>
+		<h2>Module Installation</h2>
+		<p>Copy and paste the following commands one by one to the command prompt:</p>
+		<code>pip install --user matplotlib</code>
+		<code>pip install --user numpy</code>
+		<code>pip install --user requests</code>
+		<code>pip install --user mplcursors</code>
+	</div>
+	<br/><hr>
+	<div class="dwty"><!-- dwty stands for 'Downloads and Thank You' -->
 		<!-- Downloads -->
 		<h2><pre>Download Links Below  <span class="fas fa-angle-double-down"></span></pre></h2>
 		<ul>
-			<li><a href="DataVisualysis-master.zip" download="DataVisualysis">Click to download the program</a></li>
-			<li><a href="documentation.zip" download="DV-documentation">Click to download the documentation</a></li>
+			<li><a href="download_files/data_visualysis.zip" download="data_visualysis">Click to download the program</a></li>
+			<li><a href="download_files/documentation.zip" download="DV-documentation">Click to download the documentation</a></li>
+			<li><a href="download_files/README.md" download="readme">Click to download the README file</a></li>
 		</ul>
 		<!-- Thank You -->
-		<p>Thank you Altar Dikmen for designing the logo!</p>	
+		<p>Thank you Altar Dikmen for designing the logo!</p>
+		<div id="imgcontainer"><img id="logo" src="images/DV 3D.png" alt="DataVisualysis logo" width="1000vh" height="500vh" /></div>
 	</div>
-	<script type="text/javascript">
-		
-	</script>
-	<noscript>Sorry, your browser does not support scripts or you have disabled them.</noscript>
+	<br/><br/><br/><hr/><br/><br/>
 </body>
 </html>
