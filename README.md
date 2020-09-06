@@ -7,8 +7,7 @@ The program to run is 'dv_main.py'. A DataModeler object is generated in 'dv_mai
 # Required Python Modules:
 - matplotlib
 - requests
-- json (built-in module)
-- random (built-in module)
+- numpy
 
 ## Thank you...
 - Altar Dikmen for designing the logo
