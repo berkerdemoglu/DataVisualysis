@@ -1,0 +1,9 @@
+DataVisualysis Setup Instructions
+===========================
+
+Run the executable file, 'dv-setup-windows.exe'.
+Alternatively, you can run 'dv-al-setup-instructions.bat'.
+
+The files are completely harmless, they only contain commands to install required
+modules for the program. If you get a message from your anti-virus program warning
+you that the file that you're downloading may be harmful, you can safely ignore it.
