@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-	// Upgrade it.
+	// Upgrade pip.
 	system("pip install -U --upgrade pip");
 
 	// Install the required modules.
