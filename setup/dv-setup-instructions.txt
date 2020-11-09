@@ -2,7 +2,7 @@ DataVisualysis Setup Instructions
 ===========================
 
 Run the executable file, 'dv-setup-windows.exe'.
-Alternatively, you can run 'dv-al-setup-instructions.bat'.
+Alternatively, you can run 'dv-al-setup-windows.bat'.
 
 The files are completely harmless, they only contain commands to install required
 modules for the program. If you get a message from your anti-virus program warning
